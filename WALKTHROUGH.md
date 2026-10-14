@@ -37,7 +37,9 @@ N006 is published later and describes stable conditions. N003's May fuel increas
 
 "A local Qwen model selects an exact cost-related quote from an already eligible note. The program verifies the quote and attribution. It cannot change the verdict, note ID or numeric comparisons. If its output is invalid, the full source note is used instead."
 
-Be clear that event annotations are human-reviewed, and that Q&A uses a limited route/date parser rather than unrestricted LLM chat.
+"Version 1.3 also retrieves computed findings and original notes for questions. When launched with `--llm-model qwen3:1.7b`, Qwen generates a JSON answer plan selecting source IDs and verified fact keys. Python rejects invented facts, wrong-scope sources and omitted limitations, then renders the selected facts. The model does not freely rewrite evidence."
+
+Show **Retrieved evidence** and **Exact model input and output** under an answer. Ask `What does note N010 say?` to show that a source note can be retrieved while its no-rate-change limitation remains explicit. The default saved demo labels retrieval-only mode. Event annotations are human-reviewed, and language constraints remain conservative.
 
 ## 7:00-8:30 - Demonstrate trust and repeatability
 
@@ -45,7 +47,7 @@ Open `output/evaluation.json`: ten labeled examples, including the supplied samp
 
 Open `output/reproducibility.json`: three unchanged runs, matching stable fields, full precision and full CSV hashes. Explain that a failed reference evaluation now returns nonzero even when wrong outputs repeat. `tests/test_audit_regressions.py` reproduces that defect and tests partial-event failures. Temperature 0 is a setting, not proof.
 
-Mention the 80 Python tests, eight frontend checks and the separate Decimal reconstruction of all 728 route-weeks. `CODE_REVIEW.md` records the full review. Packaging checks that source code and input hashes match the verified run.
+Mention the 98 Python tests, nine frontend checks and the separate Decimal reconstruction of all 728 route-weeks. `evidence/rag_verification.json` records seven authored Q&A cases, including five real model calls and a cache check. `CODE_REVIEW.md` and `COMPETITOR_REVIEW.md` record the reviews. Packaging checks that source code, input hashes and Q&A evidence match the verified run.
 
 ## 8:30-9:30 - Cost and packaging
 

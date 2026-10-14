@@ -27,7 +27,7 @@
     "notes": "875c57a896ac3dfac0f712f8865b287bb5d2bd5423d26e798297b74dce87e6dc",
     "note_rules": "6dce94bfec6379916ad6726a3a3ce2a09049d1ec8758267fc25554dd9aa94e0d"
   },
-  "analysis_wall_seconds": 10.127118,
+  "analysis_wall_seconds": 7.561022,
   "validation": {
     "command": "verify",
     "strict": true,

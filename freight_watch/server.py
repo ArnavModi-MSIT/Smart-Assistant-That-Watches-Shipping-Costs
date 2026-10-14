@@ -5,13 +5,16 @@ import json
 
 from .io import ROOT, decode_json
 from .bundle import read_bundle
-from .questions import answer_question
+from .rag import RagAssistant
 
 
-def make_handler(report, output_path, export_bytes=None):
+def make_handler(report, output_path, export_bytes=None, assistant=None):
     # Freeze the CSV with the loaded report so a later CLI run cannot mix versions.
     export_bytes = output_path.read_bytes() if export_bytes is None else export_bytes
     client_report = {k: report[k] for k in ("summary", "rows", "notes", "token_cost_log")}
+    assistant = assistant or RagAssistant(report)
+    client_report["question_mode"] = {"model": assistant.writer.model, "timeout_seconds": assistant.writer.timeout,
+                                      "contract": "Retrieved facts; optional local model selects the answer plan."}
     class Handler(BaseHTTPRequestHandler):
         def setup(self):
             super().setup()
@@ -65,7 +68,7 @@ def make_handler(report, output_path, export_bytes=None):
                 question = body["question"]
                 if not isinstance(question, str) or not question.strip() or len(question) > 1000:
                     raise ValueError("Enter a question of at most 1000 characters.")
-                self.send(answer_question(question, report))
+                self.send(assistant.answer(question))
             except (ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
                 self.send({"error": str(exc)}, status=400)
             except TimeoutError:
@@ -83,11 +86,12 @@ def load_report(output_dir):
     return read_bundle(output_dir)[0]
 
 
-def serve(output_dir, port):
+def serve(output_dir, port, model=None, base_url="http://127.0.0.1:11434", timeout=60):
     if not 0 <= port <= 65535:
         raise ValueError("Port must be between 0 and 65535.")
     report, snapshot, _ = read_bundle(output_dir)
-    server = ThreadingHTTPServer(("127.0.0.1", port), make_handler(report, output_dir / "output.csv", snapshot["output.csv"]))
+    assistant = RagAssistant(report, model, base_url, timeout)
+    server = ThreadingHTTPServer(("127.0.0.1", port), make_handler(report, output_dir / "output.csv", snapshot["output.csv"], assistant))
     print(f"Freight Watch: http://127.0.0.1:{server.server_port} (Ctrl+C to stop)", flush=True)
     try:
         server.serve_forever()

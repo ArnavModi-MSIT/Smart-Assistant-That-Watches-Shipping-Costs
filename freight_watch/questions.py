@@ -14,19 +14,26 @@ QUERY_WORDS = set("which what why how did do does is are was were has have had t
                   "expensive increase increases increased rise rises rising higher high unusual jump jumped "
                   "spike spiked changed change happened explain show list findings observations get pricier for on in at "
                   "during of over and to towards from between through week weeks month year please me all "
-                  "than their its past average history versus vs may can you tell about supported justified normal".split())
+                  "than their its past average history versus vs may can you tell about supported justified normal "
+                  "there surcharge surcharges truck availability issue issues festival festivals flood flooding "
+                  "weather diesel fuel prices highway maintenance cause caused impact tracking mandate "
+                  "note notes say says rejected rejection evidence explain summary summarize compare difference "
+                  "between expensive cheaper price movement".split())
 
 
 def unsupported():
     return {"answer": "I could not apply every requested constraint. Use a listed directional route, a date or date range in YYYY-MM-DD, or one month and year. Exclusions and other filters are unsupported.", "findings": []}
 
 
-def answer_question(question, report):
+def question_scope(question, report):
     text = re.sub(r"[^a-z0-9]+", " ", question.lower()).strip()
     rows = report["rows"]
+    note_ids = re.findall(r"\bN\d{3}\b", question.upper())
+    if any(note_id not in {n["note_id"] for n in report["notes"]} for note_id in note_ids):
+        return unsupported()
     routes = sorted({r["route"] for r in rows})
     selected = []
-    residual = text
+    residual = re.sub(r"\bn\d{3}\b", " ", text)
     for route in routes:
         name = re.sub(r"[^a-z0-9]+", " ", route.lower())
         words = name.split()
@@ -94,6 +101,15 @@ def answer_question(question, report):
     if len(requested) > 1:
         return unsupported()
     requested_flag = next(iter(requested), None)
+    return {"rows": scope, "routes": selected, "status": requested_flag, "note_ids": note_ids}
+
+
+def answer_question(question, report):
+    parsed = question_scope(question, report)
+    if "rows" not in parsed:
+        return parsed
+    scope, selected, requested_flag = parsed["rows"], parsed["routes"], parsed["status"]
+    text = re.sub(r"[^a-z0-9]+", " ", question.lower()).strip()
     if selected:
         findings = [r for r in scope if r["flagged"] == requested_flag] if requested_flag else [r for r in scope if r["candidate"]]
         if not findings:

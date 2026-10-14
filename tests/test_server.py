@@ -89,6 +89,16 @@ class DemoServerTests(unittest.TestCase):
         finally:
             self.output_path.write_bytes(original)
 
+    def test_rag_note_response_and_mode_are_exposed(self):
+        with urlopen(self.url + "/api/results") as response:
+            self.assertIsNone(json.load(response)["question_mode"]["model"])
+        request = Request(self.url + "/api/question", data=b'{"question":"What does note N010 say?"}', headers={"Content-Type": "application/json"})
+        with urlopen(request) as response: answer = json.load(response)
+        self.assertEqual(answer["rag"]["mode"], "retrieval_only")
+        self.assertEqual(answer["rag"]["retrieved"][0]["source_id"], "N010")
+        self.assertEqual(answer["findings"], [])
+        self.assertIn("cannot justify a cost increase", answer["answer"])
+
 
 if __name__ == "__main__":
     unittest.main()

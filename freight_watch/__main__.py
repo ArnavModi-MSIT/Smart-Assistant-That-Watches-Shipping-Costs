@@ -89,7 +89,7 @@ def main(argv=None):
     try:
         if args.command == "serve":
             from .server import serve
-            serve(args.output_dir, args.port)
+            serve(args.output_dir, args.port, args.llm_model, args.ollama_url, args.llm_timeout)
             return 0
         thresholds = Thresholds(args.history_threshold, args.peer_threshold, args.minimum_rise)
         args.output_dir.mkdir(parents=True, exist_ok=True)

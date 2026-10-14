@@ -26,7 +26,15 @@ The demo includes a route chart, history and peer comparisons, verdict filters, 
 - `Why Mumbai-Pune on 2025-09-15?`
 - `Which routes need review?`
 
-The question endpoint reads computed findings. It does not call an LLM or pretend to answer unrelated questions. Month queries, including abbreviations such as `Sep`, must include a year because the input covers two years. ISO dates are mapped to their Monday week; `between 2025-03-03 and 2025-03-17` includes both boundary weeks. Month/year requests include weeks intersecting that calendar period, even when their Monday is in the preceding month/year. Routes can be written as `Chennai-Bangalore` or `Chennai to Bangalore`. Unknown/reversed routes, conflicting periods, exclusions and unsupported filters return no findings. Explicit unexplained/justified/normal status constraints are honored.
+Version 1.3 retrieves both computed findings and original notes for each question using TF-IDF/BM25 rank fusion. The default demo returns verified retrieved facts. To enable real local Qwen generation, start your installed Ollama service and run:
+
+```powershell
+python -m freight_watch serve --output-dir output --llm-model qwen3:1.7b
+```
+
+The model generates an answer plan selecting source IDs and verified fact keys; Python validates and renders the answer. It cannot invent causes or change numbers/verdicts. The UI shows the mode, sources, measured usage, exact prompt and response. A model failure uses a labeled retrieval fallback. Graph clicks still inspect saved results without inference. `RAG.md` explains the contract and verification; `What does note N010 say?` demonstrates a source-only question.
+
+Month queries, including abbreviations such as `Sep`, must include a year because the input covers two years. ISO dates are mapped to their Monday week; `between 2025-03-03 and 2025-03-17` includes both boundary weeks. Month/year requests include weeks intersecting that calendar period, even when their Monday is in the preceding month/year. Routes can be written as `Chennai-Bangalore` or `Chennai to Bangalore`. Unknown/reversed routes, conflicting periods, exclusions and unsupported filters return no findings. Explicit unexplained/justified/normal status constraints are honored. The language parser is conservative; this is not unrestricted chat.
 
 ## Deliverables
 
@@ -45,6 +53,8 @@ The question endpoint reads computed findings. It does not call an LLM or preten
 | `environment.json` | Python/OS, application source hashes, Ollama version and model digest |
 | `threshold_sensitivity.json` | Counts under nine documented threshold configurations, without accuracy claims |
 
+`evidence/rag_verification.json` records seven authored Q&A cases with actual local inference traces, separately from the full batch log. `COMPETITOR_REVIEW.md` and `evidence/competitor_checks.json` record the pinned source review of eight public implementations and the executed comparisons/probes.
+
 `WALKTHROUGH.md` provides a ten-minute demo outline. `VALIDATION.md` records what was verified. To build the submission ZIP:
 
 ```powershell
@@ -53,7 +63,7 @@ python scripts/package_submission.py
 
 Packaging refuses an exploratory or failed bundle, verifies committed output hashes, and checks that code, inputs, rules and reference labels match the verified run. It builds a temporary ZIP before atomically replacing the deliverable. `AUDIT_RESPONSE.md` covers the supplied audits; `CODE_REVIEW.md` records the full implementation review, reproduced defects and executed checks. Default `output/` can be tracked in Git; alternate `output-*` folders are experiments and are excluded from the clean ZIP.
 
-Send `FreightWatch_Submission.zip` or a repository link to HR before the scheduled Round 2 slot. The supplied brief does not state an actual date or time. The program does not submit anything.
+Share `FreightWatch_Submission.zip` or an accessible repository link within the recruiter's stated submission deadline. The program does not submit anything. A private repository requires reviewer access.
 
 ## Exact core calculations
 
@@ -140,11 +150,12 @@ python -m unittest discover -v
 node tests/test_web.js
 python -m freight_watch verify --output-dir output-offline
 python scripts/verify_numbers.py --output-dir output
+python scripts/verify_rag.py --llm-model qwen3:1.7b
 ```
 
 The server tests bind a temporary loopback port. Restricted execution sandboxes may require approval for those socket operations; a normal local Python session needs no special configuration.
 
-The 80 Python tests cover core arithmetic, mixed-week adversarial cases, retrieval edge cases, malformed model/API data, CLI failure gates, ambiguous routes, numeric range boundaries, query constraints and artifact provenance. Eight Node checks cover retries, deadlines, hostile-ID rendering, calendar spacing and route selection; Node is a developer-test dependency only. An independent 50-digit Decimal reconstruction checks all 728 route-weeks and 5,096 numeric fields against the raw input. The ten reference labels remain manually authored cases from supplied examples, event windows and stable observations. Their confusion counts and the synthetic regression cases do not establish general accuracy on unseen routes or events.
+The 98 Python tests cover core arithmetic, mixed-week adversarial cases, retrieval edge cases, malformed model/API data, CLI failure gates, ambiguous routes, numeric range boundaries, query constraints, artifact provenance and grounded RAG plans. Nine Node checks cover retries, deadlines, hostile-ID rendering, calendar spacing, route selection and escaped RAG trace rendering; Node is a developer-test dependency only. An independent 50-digit Decimal reconstruction checks all 728 route-weeks and 5,096 numeric fields against the raw input. The ten reference labels remain manually authored cases from supplied examples, event windows and stable observations. Their confusion counts and the synthetic regression cases do not establish general accuracy on unseen routes or events.
 
 `verify` starts three independent analyses without changing inputs. It compares all CSV fields except `reason`, full-precision metrics and input hashes, and records whole-CSV identity. It returns nonzero if any reference case or independently rebuilt citation check fails, even if wrong outputs repeat perfectly. A single `run` replaces repeat evidence with `not_run`; use `--require-evaluation-pass` to gate an exploratory run. `--rules` and `--labels` support separately reviewed context and reference sets. Writes are staged with a checksum manifest committed last, and the server refuses a damaged or strictly failed bundle.
 
@@ -162,6 +173,7 @@ Inputs are validated for required fields, unique shipment IDs, valid ISO dates, 
 - `evidence.py`, `retrieval.py`: source-grounded event checks and ranked retrieval.
 - `llm.py`: loopback-only optional LLM, quote validation, cache and measured token log.
 - `questions.py`, `server.py`, `web/`: read-only local demo and conservative query interface.
+- `rag.py`: findings-and-notes retrieval, local answer-plan generation, independent validation and measured Q&A traces.
 - `io.py`, `models.py`: input validation, data types and CSV contract.
 - `bundle.py`, `scripts/`: verified artifact snapshots, independent numeric audit and safe submission packaging.
 - `evaluation.py`, `tests/`: labeled evaluation and independent boundary/guardrail checks.

@@ -10,13 +10,14 @@ Verified locally on October 14, 2026 (India time), using the supplied inputs and
 | Output coverage | 728 route-week rows, exact eight-column header |
 | Anomalous route-weeks | 17 candidates: 14 unexplained, three justified |
 | Labeled reference cases | 10/10 passed; this small set is not a general accuracy estimate |
-| Python test suite | 80 tests passed, including full-review regressions; resource warnings treated as errors |
+| Python test suite | 98 tests passed, including grounded RAG regressions; resource warnings treated as errors |
 | JavaScript syntax | `node --check web/app.js` passed |
-| Frontend resilience/rendering | Eight Node checks passed |
+| Frontend resilience/rendering | Nine Node checks passed, including escaped RAG trace rendering |
 | Independent arithmetic | 728 route-weeks / 5,096 numeric fields checked with 50-digit Decimal; maximum absolute difference 2 × 10⁻¹¹ |
 | Offline repetition | Three unchanged runs; identical stable fields and full CSVs |
 | Local AI repetition | Three unchanged runs; identical stable fields and full CSVs |
 | AI token accounting | Two successful calls, 215 input tokens and 103 output tokens; two accepted quotes and one cache hit |
+| Grounded Q&A | Seven authored cases passed; five accepted actual Qwen plans, two invalid scopes rejected without inference; cache check passed |
 | Failure gate | Repeated incorrect output under extreme thresholds returns exit code 1 |
 | Full precision | Three runs match full-precision numeric hashes as well as CSV fields |
 | Model provenance | Ollama 0.31.1 and model digest recorded in environment and token logs |
@@ -56,8 +57,8 @@ HTTP integration tests additionally verify asset delivery, results JSON, byte-ex
 
 ## Limits of this evidence
 
-The event windows include explicitly documented human interpretations. The thresholds are configurable judgment calls. There is no complete labeled anomaly dataset, no production deployment, and no benchmark of neural embeddings against TF-IDF. The Q&A interface supports route/date questions rather than unrestricted natural-language reasoning. Local AI was genuinely run, but it is intentionally limited to validated extractive quote selection.
+The event windows include explicitly documented human interpretations. The thresholds are configurable judgment calls. There is no complete labeled anomaly dataset, no production deployment, and no benchmark of neural embeddings against TF-IDF. The Q&A interface supports constrained route/date/status/note questions rather than unrestricted natural-language reasoning. Local AI was genuinely run for validated extractive quotes and, in version 1.3, grounded answer plans over retrieved findings/notes. Python renders the selected facts; no free-form generated explanation is accepted merely because it cites a valid note.
 
 `CODE_REVIEW.md` records the full source review and remaining limitations, including the conservative question vocabulary, retrospective publication policy, crash-interrupted multi-file commits and checksum trust boundary. Packaging checks the final source/input/label fingerprints and atomically replaces the submission ZIP only after verifying every selected file.
 
-The temporary Ollama verification server was stopped after the runs. The demo serves saved findings and needs no model service to remain running.
+The saved demo works without a model service. Live Q&A requires an available local model; its mode and fallback are shown. `RAG.md` gives the launch and verification commands; `evidence/rag_verification.json` retains exact prompts/responses and measured usage separately from the full-run batch log.

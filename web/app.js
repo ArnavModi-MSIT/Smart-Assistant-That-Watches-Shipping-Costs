@@ -141,18 +141,30 @@ function inspect(row) {
 async function ask(question) {
   const sequence = ++askSequence;
   $("question").value = question;
-  $("answer").textContent = "Reading the findings...";
+  const liveModel = report.question_mode?.model;
+  $("answer").textContent = liveModel ? `Retrieving evidence and asking ${liveModel}...` : "Retrieving the findings and notes...";
+  $("answer-evidence").innerHTML = "";
   const button = $("question-form").querySelector("button");
   button.disabled = true;
   $("answer").setAttribute("aria-busy", "true");
   try {
-    const data = await requestJson("/api/question", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({question})}, {onRetry:() => { if (sequence === askSequence) $("answer").textContent = "Connection interrupted. Retrying once..."; }});
+    const data = await requestJson("/api/question", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({question})}, {attempts:liveModel ? 1 : 2, timeoutMs:liveModel ? (report.question_mode.timeout_seconds + 15) * 1000 : 8000, onRetry:() => { if (sequence === askSequence) $("answer").textContent = "Connection interrupted. Retrying once..."; }});
     if (sequence !== askSequence) return;
     if (typeof data.answer !== "string" || !Array.isArray(data.findings)) throw new Error("The response was incomplete. Please try again.");
     $("answer").textContent = data.answer;
+    $("answer-evidence").innerHTML = answerEvidence(data.rag);
     if (data.findings.length) inspect(report.rows.find((r) => r.route === data.findings[0].route && r.week_of === data.findings[0].week_of));
   } catch (error) { if (sequence === askSequence) $("answer").textContent = error.message; }
   finally { if (sequence === askSequence) { button.disabled = false; $("answer").setAttribute("aria-busy", "false"); } }
+}
+
+function answerEvidence(rag) {
+  if (!rag?.retrieved?.length) return "";
+  const labels = {local_llm:"Local model answer plan",local_llm_cached:"Cached local model plan",local_llm_fallback:"Model unavailable or answer rejected; retrieved facts used",retrieval_only:"Retrieved facts · model disabled"};
+  const usage = rag.usage;
+  const tokens = usage ? `<p>${usage.cache_hit ? "Cache hit · " : ""}Tokens this request: ${escapeHtml(usage.input_tokens ?? "unknown")} input / ${escapeHtml(usage.output_tokens ?? "unknown")} output. Hosted API charge: USD 0; local compute cost unmeasured.</p>` : "";
+  const used = new Set(rag.answer_plan?.items.map((item) => item.source_id) || []);
+  return `<p class="baseline-note">${escapeHtml(labels[rag.mode] || rag.mode)}${rag.model ? ` · ${escapeHtml(rag.model)}` : ""}</p>${tokens}<details><summary>Retrieved evidence (${rag.retrieved.length} sources)</summary>${rag.retrieved.map((doc) => `<div class="rejected-note"><strong>${escapeHtml(doc.source_id)}${used.has(doc.source_id) ? " · used" : ""}</strong><p>${Object.values(doc.facts).map(escapeHtml).join(" ")}</p></div>`).join("")}</details>${usage ? `<details><summary>Exact model input and output</summary><pre>${escapeHtml(usage.prompt)}</pre><pre>${escapeHtml(usage.response ?? "No response received")}</pre></details>` : ""}`;
 }
 
 async function init() {
@@ -174,6 +186,7 @@ async function init() {
     const log = report.token_cost_log;
     $("engine-mode").textContent = log.accepted_quotes > 0 ? `TF-IDF retrieval · ${s.llm_model} quotes (saved run)` : "TF-IDF retrieval · Deterministic evidence explanations";
     if (log.source_quote_fallbacks) $("engine-mode").textContent += ` · ${log.source_quote_fallbacks} source fallbacks`;
+    $("question-mode").textContent = report.question_mode?.model ? `Live ${report.question_mode.model} · answers checked against retrieved facts` : "Retrieval enabled · start with --llm-model to enable live local AI";
     $("rule-caption").textContent = `Review rule: history rise ≥ ${s.thresholds.history_percent}%, or rise ≥ ${s.thresholds.minimum_rise_percent}% and peer difference ≥ ${s.thresholds.peer_percent}%.`;
     $("route-select").innerHTML = [...new Set(report.rows.map((r) => r.route))].sort().map((r) => `<option>${escapeHtml(r)}</option>`).join("");
     if (!interactionsBound) {

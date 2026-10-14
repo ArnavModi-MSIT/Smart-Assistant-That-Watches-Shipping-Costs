@@ -280,6 +280,16 @@ class ArtifactReviewTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, expected): build_package(root)
                 path.write_bytes(old)
 
+    def test_stale_or_failed_rag_evidence_cannot_be_packaged(self):
+        with temporary_directory() as folder:
+            root = Path(folder); self.project(root)
+            target, _ = build_package(root); old = target.read_bytes()
+            evidence = root / "evidence"; evidence.mkdir()
+            for verification in ({"passed": False}, {"passed": True, "source_sha256": {}, "run_manifest_sha256": "old"}):
+                write_json(evidence / "rag_verification.json", verification)
+                with self.assertRaisesRegex(ValueError, "RAG evidence differs"): build_package(root)
+                self.assertEqual(target.read_bytes(), old)
+
 
 if __name__ == "__main__":
     unittest.main()

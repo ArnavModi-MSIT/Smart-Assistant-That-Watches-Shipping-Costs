@@ -36,5 +36,11 @@ vm.runInContext(fs.readFileSync(path.join(__dirname, "../web/app.js"), "utf8"), 
   vm.runInContext('report = {rows:[fixture, another]}; selectRoute("Delhi-Jaipur");', context);
   assert.equal(elements.get("detail-route").textContent, "Delhi-Jaipur");
   assert.equal(elements.get("route-select").value, "Delhi-Jaipur");
-  console.log("Frontend checks: 8 passed (escaping, retry, client error, network failure, timeout, evidence rendering, calendar spacing, route selection).");
+  context.ragFixture = {mode:"local_llm_cached",model:id,retrieved:[{source_id:id,facts:{source:id}}],answer_plan:{items:[{source_id:id}]},usage:{input_tokens:0,output_tokens:0,cache_hit:true,prompt:id,response:id}};
+  const evidence = vm.runInContext('answerEvidence(ragFixture)', context);
+  assert.ok(evidence.includes("&lt;img"));
+  assert.ok(!evidence.includes("<img"));
+  assert.ok(evidence.includes("Tokens this request: 0 input / 0 output"));
+  assert.ok(evidence.includes("Exact model input and output"));
+  console.log("Frontend checks: 9 passed (escaping, retry, client error, network failure, timeout, evidence rendering, calendar spacing, route selection, RAG audit rendering).");
 })().catch((error) => { console.error(error); process.exitCode = 1; });

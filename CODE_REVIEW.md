@@ -59,6 +59,14 @@ python scripts/package_submission.py
 
 The model was already installed. Ollama 0.31.1 and its model digest are recorded in `output/environment.json`; the temporary verification service was stopped. The demo was restarted with the new saved output and does not depend on a running model service.
 
+## Version 1.3 review and verification
+
+`COMPETITOR_REVIEW.md` records the eight pinned public code reviews, five executed offline commands, saved-output comparisons and six reproduced adversarial failures. The useful feature improvement is question-driven retrieval plus local answer-plan generation; `RAG.md` describes its constrained contract.
+
+`rag.py` independently rebuilds saved citations from frozen reviewed rules, indexes 728 findings and ten notes, applies directional/time/status constraints, fuses lexical vector and BM25 ranks, requests a schema-constrained local model plan, validates source/fact selections and renders verified sentences. The UI exposes source/usage/prompt/response traces with escaping. Model failures fall back without changing verdicts. Cache hits report zero new tokens. Packaging rejects stale or failed RAG evidence.
+
+The expanded checks are 98 Python tests and nine frontend checks, seven authored Q&A cases (five accepted real Qwen calls; two invalid requests make no inference), and the unchanged independent 5,096-field Decimal audit. The core CSV classification remains 14 unexplained and three justified. Fresh three-run batch verification fingerprints the upgraded code; `evidence/rag_verification.json` is tied to that bundle and retains actual inference data. These checks do not establish general accuracy or unrestricted chat capability.
+
 ## Remaining limits
 
 - Thresholds and note windows include documented human judgments. The ten labels and synthetic regressions are not a held-out accuracy benchmark. Anomalies do not prove overcharging or causation.

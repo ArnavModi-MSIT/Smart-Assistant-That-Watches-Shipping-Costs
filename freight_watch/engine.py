@@ -166,6 +166,6 @@ def analyze(shipments_path, notes_path, thresholds=None, quote_writer=None, rule
                "ai_status": {k: log[k] for k in ("model_attempted", "calls_failed", "rejected_quotes", "source_quote_fallbacks", "accepted_quotes")},
                "baseline_method": "Arithmetic mean of prior 8 calendar-week route rates; arithmetic mean of other same-week routes of the supplied type.",
                "input_sha256": {name: hashlib.sha256(raw).hexdigest() for name, raw in raw_sources.items()}}
-    return {"summary": summary, "rows": rows, "csv_rows": csv_rows,
+    return {"summary": summary, "rows": rows, "csv_rows": csv_rows, "evidence_rules": rules_config,
             "notes": [{"note_id": n.note_id, "date": n.day.isoformat(), "applies_to": n.applies_to, "text": n.text} for n in notes],
             "token_cost_log": log}
