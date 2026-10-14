@@ -47,7 +47,7 @@ Open `output/evaluation.json`: ten labeled examples, including the supplied samp
 
 Open `output/reproducibility.json`: three unchanged runs, matching stable fields, full precision and full CSV hashes. Explain that a failed reference evaluation now returns nonzero even when wrong outputs repeat. `tests/test_audit_regressions.py` reproduces that defect and tests partial-event failures. Temperature 0 is a setting, not proof.
 
-Mention the 98 Python tests, nine frontend checks and the separate Decimal reconstruction of all 728 route-weeks. `evidence/rag_verification.json` records seven authored Q&A cases, including five real model calls and a cache check. `CODE_REVIEW.md` and `COMPETITOR_REVIEW.md` record the reviews. Packaging checks that source code, input hashes and Q&A evidence match the verified run.
+Mention the 98 Python tests, nine frontend checks and the separate Decimal reconstruction of all 728 route-weeks. `evidence/rag_verification.json` records seven authored Q&A cases, including five real model calls and a cache check. Packaging checks that source code, input hashes and Q&A evidence match the verified run.
 
 ## 8:30-9:30 - Cost and packaging
 

@@ -20,7 +20,7 @@
     }
   },
   "source_sha256": {
-    "freight_watch/__init__.py": "a10675140eed33cf339c8aae2687dd7a39f75171a5fa069863123a3e20fa568a",
+    "freight_watch/__init__.py": "0e8097fb67089979c333d1862a532f45905ea7de9c020d2d997ee34a92e9f5c7",
     "freight_watch/__main__.py": "3d03b455e4736265b1c7c2ede259b547dc9e334c07ed1b40cebffd7a2d6ca2ce",
     "freight_watch/bundle.py": "408f9b7edef31f4db4741482184a7080abe1597d41547e7f21c29b8a824adaef",
     "freight_watch/engine.py": "3f076cbe9913e55e72ee995f61b3fc3d27c55362b28d0fddf357f24e85f7ca70",
@@ -30,10 +30,10 @@
     "freight_watch/llm.py": "359e7fa0a4400f77cbb6f252d4f251ab7c3c4879eb9152e840cccbcf23ebb6fa",
     "freight_watch/models.py": "55910bfa10824a1b213de8abf27ec19afa800b95c3783e6a357d917976b1fe1d",
     "freight_watch/questions.py": "409a1b17cc3f040a66426f3aa527dbd1a1a96dde280585041ad169ddd4a19a53",
-    "freight_watch/rag.py": "ad2b746c3cbafa2ac181f96a2444092958e504b11d8c09df58b618114a896951",
+    "freight_watch/rag.py": "dc28cd172e26112e777238cb44daa99474bc27ed2278f2cee9dfdcddbcbb51b7",
     "freight_watch/retrieval.py": "009091869b6bdc713971b06d0784abef7f371b39df5a43fcde55cb4262429730",
     "freight_watch/server.py": "fba0a532921c60c9d048689364c8d0eea289d8ba7e6dfc8bfca7265319ded550",
-    "scripts/package_submission.py": "de2615c1cdb3a41ebc170098021b4fcedfe584b3f7f31220e2631323e95ccf6f",
+    "scripts/package_submission.py": "1a9dba11d850ee886d7448b72493b1168436ea5bdb92c9afd62b197b52040cea",
     "scripts/verify_numbers.py": "48e0139eca0ec7488ed0d8d58edb206d5dcf6d9ae8e3d8971fa3eea62bec3552",
     "scripts/verify_rag.py": "dc16f498a8cb34dc2752d1c3ed55e666259467650b65b922b0ff6f45d0083506",
     "start_demo.cmd": "76a21dbf576b55a39ea8af2df28c5d93c95f52e55a5238b3641f44e9f2375989",

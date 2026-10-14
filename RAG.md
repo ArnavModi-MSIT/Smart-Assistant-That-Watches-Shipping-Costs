@@ -24,7 +24,7 @@ Examples:
 
 1. Parse route direction, ISO date/range, month/year, verdict or exact note ID. Unknown/reversed routes, exclusions, incompatible constraints and unsupported vocabulary fail closed. This is bounded natural-language Q&A, not unrestricted chat.
 2. Build source documents from the verified snapshot. Findings contain computed numeric facts/verdicts. Justifications are independently rebuilt against frozen, content-hashed event rules, including publication, route, event exposure and uplift checks. Notes contain their exact text and reviewed window/exclusion. Notes published after the requested scope's last week are excluded.
-3. Filter candidate source IDs by the requested scope; rank them using TF-IDF cosine and BM25 with reciprocal-rank fusion, stable source-ID tie breaks, and a maximum of eight retrieved documents. This is a lexical vector index in memory, not neural embeddings or a Chroma service. Similarity alone never establishes applicability.
+3. Filter candidate source IDs by the requested scope; rank them with the same TF-IDF cosine retriever used by the core engine, stable source-ID tie breaks, and a maximum of eight retrieved documents. This is a lexical vector index in memory. Similarity alone never establishes applicability.
 4. Send the question and retrieved verified facts to the local model. Ollama receives a JSON schema restricting source IDs and fact keys. It generates an ordered answer plan such as:
 
 ```json

@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT))
 from freight_watch.bundle import read_bundle, source_files
 from freight_watch.io import decode_json
 
-FILES = ["README.md", "WALKTHROUGH.md", "VALIDATION.md", "AUDIT_RESPONSE.md", "CODE_REVIEW.md", "RAG.md", "COMPETITOR_REVIEW.md",
+FILES = ["README.md", "WALKTHROUGH.md", "VALIDATION.md", "RAG.md",
          "requirements.txt", ".gitignore", "config/note_rules.json", "tests/fixtures/labeled_weeks.json"]
 INPUT_DIR = Path("AI Intern Case Study") / "AI Intern Case Study"
 INPUTS = ["shipment_records.csv", "context_notes.csv", "sample_output_format_v2.csv", "FreightTiger_Intern_CaseStudy.pdf"]
@@ -46,17 +46,15 @@ def build_package(root=ROOT, target=None):
     if environment.get("reference_labels_sha256") != digest(snapshot["tests/fixtures/labeled_weeks.json"]):
         raise ValueError("Reference labels differ from the verified run.")
     snapshot.update({"output/" + name: raw for name, raw in outputs.items()})
-    for name in ("competitor_checks.json", "rag_verification.json"):
-        path = root / "evidence" / name
-        if path.is_file():
-            raw = path.read_bytes()
-            if name == "rag_verification.json":
-                verification = decode_json(raw, "RAG verification")
-                if (not isinstance(verification, dict) or verification.get("passed") is not True
-                        or verification.get("source_sha256") != current_sources
-                        or verification.get("run_manifest_sha256") != digest(outputs["run_manifest.json"])):
-                    raise ValueError("RAG evidence differs from the verified run or failed; rerun verify_rag.py.")
-            snapshot["evidence/" + name] = raw
+    path = root / "evidence/rag_verification.json"
+    if path.is_file():
+        raw = path.read_bytes()
+        verification = decode_json(raw, "RAG verification")
+        if (not isinstance(verification, dict) or verification.get("passed") is not True
+                or verification.get("source_sha256") != current_sources
+                or verification.get("run_manifest_sha256") != digest(outputs["run_manifest.json"])):
+            raise ValueError("RAG evidence differs from the verified run or failed; rerun verify_rag.py.")
+        snapshot["evidence/rag_verification.json"] = raw
     preview = root / "output" / "demo_preview.jpg"
     if preview.is_file():
         snapshot["output/demo_preview.jpg"] = preview.read_bytes()

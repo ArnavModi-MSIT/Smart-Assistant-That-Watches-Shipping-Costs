@@ -5,11 +5,9 @@ each selection and renders it. Free-form causal prose is never trusted just beca
 it contains a valid note ID. All retrieval, prompts, responses and usage are auditable.
 """
 
-from collections import Counter
 from datetime import date
 import hashlib
 import json
-import math
 import threading
 from time import perf_counter
 from urllib.error import URLError
@@ -20,50 +18,22 @@ from .evidence import EvidenceMatcher
 from .io import ROOT, decode_json
 from .models import Note
 from .questions import answer_question, question_scope
-from .retrieval import NoteIndex, tokens
-
-STOPWORDS = set("a an the is are was were did do does it this that in on for of and to from why what which how please me you".split())
-
-
-def terms(text):
-    return [t for t in tokens(text) if t not in STOPWORDS]
+from .retrieval import NoteIndex
 
 
 class EvidenceIndex:
-    """In-memory lexical vector index with cosine/BM25 reciprocal-rank fusion."""
+    """Reuse the existing TF-IDF retriever for findings and original notes."""
 
     def __init__(self, documents):
-        self.documents = sorted(documents, key=lambda doc: doc["source_id"])
-        self.counts = [Counter(terms(doc["search_text"])) for doc in self.documents]
-        self.lengths = [sum(counts.values()) for counts in self.counts]
-        self.average_length = sum(self.lengths) / max(1, len(self.lengths))
-        frequency = Counter(t for counts in self.counts for t in counts)
-        n = len(self.documents)
-        self.idf = {t: math.log((1 + n) / (1 + count)) + 1 for t, count in frequency.items()}
-        self.bm25_idf = {t: math.log(1 + (n - count + .5) / (count + .5)) for t, count in frequency.items()}
-        self.vectors = [self.vector(counts) for counts in self.counts]
-
-    def vector(self, counts):
-        values = {t: (1 + math.log(count)) * self.idf[t] for t, count in counts.items() if t in self.idf}
-        norm = math.sqrt(sum(v * v for v in values.values()))
-        return {t: value / norm for t, value in values.items()} if norm else {}
+        self.documents = {doc["source_id"]: doc for doc in documents}
+        # NoteIndex consumes IDs and text; this adapter's neutral date is not
+        # used for eligibility. Actual source dates remain in the documents.
+        self.index = NoteIndex([Note(doc["source_id"], date.min, "", doc["search_text"]) for doc in documents])
 
     def search(self, query, allowed=None, limit=8):
-        query_counts = Counter(terms(query)); vector = self.vector(query_counts)
-        scores = []
-        for i, doc in enumerate(self.documents):
-            if allowed is not None and doc["source_id"] not in allowed:
-                continue
-            cosine = sum(value * self.vectors[i].get(t, 0) for t, value in vector.items())
-            length_factor = 1.2 * (.25 + .75 * self.lengths[i] / max(self.average_length, 1))
-            bm25 = sum(self.bm25_idf.get(t, 0) * self.counts[i][t] * 2.2 / (self.counts[i][t] + length_factor)
-                       for t in query_counts if self.counts[i][t])
-            scores.append((doc, cosine, bm25))
-        cosine_rank = {doc["source_id"]: i for i, (doc, *_rest) in enumerate(sorted(scores, key=lambda s: (-s[1], s[0]["source_id"])), 1)}
-        bm25_rank = {doc["source_id"]: i for i, (doc, *_rest) in enumerate(sorted(scores, key=lambda s: (-s[2], s[0]["source_id"])), 1)}
-        ranked = [{**doc, "score": 1 / (60 + cosine_rank[doc["source_id"]]) + 1 / (60 + bm25_rank[doc["source_id"]]),
-                   "cosine": cosine, "bm25": bm25} for doc, cosine, bm25 in scores if cosine > 0 or bm25 > 0]
-        return sorted(ranked, key=lambda doc: (-doc["score"], doc["source_id"]))[:limit]
+        return [{**self.documents[source.note_id], "score": score}
+                for source, score in self.index.search(query)
+                if score > 0 and (allowed is None or source.note_id in allowed)][:limit]
 
 
 def finding_id(row):
@@ -167,7 +137,7 @@ class RagAssistant:
         # Exact IDs are an explicit source request, not a semantic-score guess.
         for note_id in scope["note_ids"]:
             if note_id in allowed_notes and all(doc["source_id"] != note_id for doc in ranked):
-                ranked.insert(0, {**self.by_id[note_id], "score": 0., "cosine": 0., "bm25": 0.})
+                ranked.insert(0, {**self.by_id[note_id], "score": 0.})
         # Preserve a finding when lexical notes outrank it; the answer must carry
         # the actual verdict for a route/week question, not just a nearby note.
         if selected and not any(doc["kind"] == "finding" for doc in ranked):
@@ -278,7 +248,7 @@ class RagAssistant:
                     for doc in chosen if doc["kind"] == "finding"]
         return {"answer": "\n\n".join(lines), "findings": findings,
                 "rag": {"mode": mode, "model": self.writer.model, "answer_plan": plan,
-                        "retrieval_method": "TF-IDF cosine + BM25 reciprocal-rank fusion; in-memory index",
-                        "retrieved": [{k: doc[k] for k in ("source_id", "kind", "route", "facts", "score", "cosine", "bm25")} for doc in documents],
+                        "retrieval_method": "TF-IDF cosine similarity; shared in-memory retriever",
+                        "retrieved": [{k: doc[k] for k in ("source_id", "kind", "route", "facts", "score")} for doc in documents],
                         "usage": record, "model_info": self.writer.model_info, "hosted_api_cost_usd": 0.0,
                         "generation_contract": "Model selects and orders facts; Python checks and renders every claim."}}
