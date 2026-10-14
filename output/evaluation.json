@@ -1,0 +1,155 @@
+{
+  "label_count": 10,
+  "passed": 10,
+  "accuracy_on_this_small_set": 1.0,
+  "label_method": "Human-authored reference cases from sample examples, event windows and stable weeks; not a complete ground-truth dataset.",
+  "unexplained_confusion_on_reference_set": {
+    "tp": 4,
+    "fp": 0,
+    "tn": 6,
+    "fn": 0
+  },
+  "all_justified_rows_have_eligible_citations": true,
+  "checks": [
+    {
+      "route": "Delhi-Jaipur",
+      "week_of": "2024-11-11",
+      "expected": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "actual": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "passed": true,
+      "label_basis": "Provided unexplained sample example."
+    },
+    {
+      "route": "Ahmedabad-Mumbai",
+      "week_of": "2025-01-20",
+      "expected": {
+        "flagged": "No (justified)",
+        "matched_note_id": "N002"
+      },
+      "actual": {
+        "flagged": "No (justified)",
+        "matched_note_id": "N002"
+      },
+      "passed": true,
+      "label_basis": "Provided festival sample example; same route and week."
+    },
+    {
+      "route": "Mumbai-Pune",
+      "week_of": "2025-09-15",
+      "expected": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "actual": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "passed": true,
+      "label_basis": "Provided drift example; N006 is future and describes no disruption."
+    },
+    {
+      "route": "Chennai-Bangalore",
+      "week_of": "2025-02-24",
+      "expected": {
+        "flagged": "No (justified)",
+        "matched_note_id": "N001"
+      },
+      "actual": {
+        "flagged": "No (justified)",
+        "matched_note_id": "N001"
+      },
+      "passed": true,
+      "label_basis": "Flooding event covers shipments in this week."
+    },
+    {
+      "route": "Chennai-Bangalore",
+      "week_of": "2025-03-03",
+      "expected": {
+        "flagged": "No (justified)",
+        "matched_note_id": "N001"
+      },
+      "actual": {
+        "flagged": "No (justified)",
+        "matched_note_id": "N001"
+      },
+      "passed": true,
+      "label_basis": "Flooding persists through March 8."
+    },
+    {
+      "route": "Chennai-Bangalore",
+      "week_of": "2025-03-10",
+      "expected": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "actual": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "passed": true,
+      "label_basis": "Costs remain elevated after flooding ended; do not extend N001."
+    },
+    {
+      "route": "Delhi-Jaipur",
+      "week_of": "2024-11-18",
+      "expected": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "actual": {
+        "flagged": "Yes",
+        "matched_note_id": ""
+      },
+      "passed": true,
+      "label_basis": "Second elevated week has no supporting event."
+    },
+    {
+      "route": "Mumbai-Pune",
+      "week_of": "2024-01-01",
+      "expected": {
+        "flagged": "No",
+        "matched_note_id": ""
+      },
+      "actual": {
+        "flagged": "No",
+        "matched_note_id": ""
+      },
+      "passed": true,
+      "label_basis": "First week has no history to establish a rise."
+    },
+    {
+      "route": "Mumbai-Delhi",
+      "week_of": "2024-07-29",
+      "expected": {
+        "flagged": "No",
+        "matched_note_id": ""
+      },
+      "actual": {
+        "flagged": "No",
+        "matched_note_id": ""
+      },
+      "passed": true,
+      "label_basis": "Stable costs; N005 explicitly says costs were not significantly affected."
+    },
+    {
+      "route": "Delhi-Chennai",
+      "week_of": "2025-10-27",
+      "expected": {
+        "flagged": "No",
+        "matched_note_id": ""
+      },
+      "actual": {
+        "flagged": "No",
+        "matched_note_id": ""
+      },
+      "passed": true,
+      "label_basis": "Normal route-week; N010 explicitly says no rate change."
+    }
+  ]
+}

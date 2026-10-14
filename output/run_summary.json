@@ -1,0 +1,37 @@
+{
+  "shipments": 2940,
+  "routes": 7,
+  "weeks": 104,
+  "route_weeks": 728,
+  "date_start": "2024-01-01",
+  "date_end": "2025-12-28",
+  "candidates": 17,
+  "unexplained": 14,
+  "justified": 3,
+  "thresholds": {
+    "history_percent": 15,
+    "peer_percent": 20,
+    "minimum_rise_percent": 5
+  },
+  "llm_model": "qwen3:1.7b",
+  "ai_status": {
+    "model_attempted": true,
+    "calls_failed": 0,
+    "rejected_quotes": 0,
+    "source_quote_fallbacks": 0,
+    "accepted_quotes": 2
+  },
+  "baseline_method": "Arithmetic mean of prior 8 calendar-week route rates; arithmetic mean of other same-week routes of the supplied type.",
+  "input_sha256": {
+    "shipments": "1a2b4d66c4dc694111ba37b966486b5b0650df9ec8687402f3434117b140f4b6",
+    "notes": "875c57a896ac3dfac0f712f8865b287bb5d2bd5423d26e798297b74dce87e6dc",
+    "note_rules": "6dce94bfec6379916ad6726a3a3ce2a09049d1ec8758267fc25554dd9aa94e0d"
+  },
+  "analysis_wall_seconds": 10.127118,
+  "validation": {
+    "command": "verify",
+    "strict": true,
+    "evaluation_passed": true,
+    "reproducibility_passed": true
+  }
+}

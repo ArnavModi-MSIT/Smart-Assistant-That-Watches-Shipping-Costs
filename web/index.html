@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Freight Watch | Shipping cost intelligence</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">↗</span><span>FREIGHT<span class="brand-light">WATCH</span></span></a>
+    <span class="top-label">SHIPPING COST INTELLIGENCE</span>
+    <a class="export" href="/api/export" download="freight_watch_output.csv">Export CSV <span aria-hidden="true">↓</span></a>
+  </header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">ROUTE COST MONITOR</p><h1>Catch the rise.<br><span>Understand the reason.</span></h1><p class="intro-copy">Weekly freight costs, compared with route history and peers.<br>Every explanation traces back to the supplied evidence.</p></div><div class="coverage"><span class="live-dot"></span> <strong>SUPPLIED SAMPLE DATA</strong><p id="date-coverage">Loading dataset...</p><small id="engine-mode"></small></div></section>
+    <section class="metrics" aria-label="Dataset summary">
+      <div><p>Shipments analyzed</p><strong id="shipment-count">—</strong><small id="route-count">—</small></div>
+      <div><p>Route-weeks checked</p><strong id="week-count">—</strong><small id="coverage-weeks">—</small></div>
+      <div class="metric-alert"><p>Unexplained increases</p><strong id="review-count">—</strong><small>Flagged for human review</small></div>
+      <div><p>Note-supported increases</p><strong id="justified-count">—</strong><small>Applicable evidence found</small></div>
+    </section>
+    <section class="workspace">
+      <div class="main-column">
+        <section class="panel chart-panel">
+          <div class="panel-heading"><div><p class="eyebrow">ROUTE EXPLORER</p><h2>Cost over time</h2></div><label class="sr-only" for="route-select">Choose route</label><select id="route-select"></select></div>
+          <div class="chart-meta"><span id="route-kind" class="tag"></span><span>INR / tonne-km</span><span id="route-latest"></span></div>
+          <div id="chart" aria-label="Weekly route costs and historical baseline"></div>
+          <div class="legend"><span><i class="line"></i> Weekly cost</span><span><i class="line dashed"></i> Prior 8-week average</span><span><i class="dot red"></i> Unexplained</span><span><i class="dot green"></i> Note-supported</span></div>
+        </section>
+        <section class="panel findings-panel">
+          <div class="panel-heading"><div><p class="eyebrow">FINDINGS</p><h2>Route-week review</h2></div><span id="finding-count" class="muted"></span></div>
+          <div class="filters"><label for="status-filter" class="sr-only">Filter by verdict</label><select id="status-filter"><option value="candidate">All unusual increases</option><option value="Yes">Unexplained only</option><option value="No (justified)">Note-supported only</option><option value="all">All observations</option></select><label class="check-label"><input id="route-filter" type="checkbox"> Selected route only</label></div>
+          <div class="table-scroll"><table><thead><tr><th>Route / week</th><th>Cost</th><th>vs. history</th><th>vs. peers</th><th>Verdict</th></tr></thead><tbody id="findings"></tbody></table></div>
+          <div class="pagination"><button id="prev-page">← Previous</button><span id="page-label"></span><button id="next-page">Next →</button></div>
+        </section>
+      </div>
+      <aside class="side-column">
+        <section class="panel detail-panel"><p class="eyebrow">EVIDENCE INSPECTOR</p><h2 id="detail-route">Choose a finding</h2><p id="detail-week" class="muted"></p><div id="detail-content"></div></section>
+        <section class="panel ask-panel"><p class="eyebrow">ASK ABOUT THE DATA</p><h2>Follow the finding.</h2><p class="muted">Ask by route, week or month. Answers use the computed results.</p><form id="question-form"><label for="question" class="sr-only">Your question</label><textarea id="question" maxlength="1000" rows="3" placeholder="Why did Chennai-Bangalore get pricier in March 2025?"></textarea><button type="submit" class="primary">Ask assistant <span aria-hidden="true">↗</span></button></form><div class="suggestions"><button data-question="Why did Chennai-Bangalore get pricier in March 2025?">Expired flooding</button><button data-question="Why Ahmedabad-Mumbai on 2025-01-20?">Festival surcharge</button><button data-question="Which routes need review?">Routes to review</button></div><div id="answer" aria-live="polite"></div></section>
+      </aside>
+    </section>
+    <footer><span id="rule-caption"></span><span>Freight Watch · Internship case study</span></footer>
+    <div id="load-error" role="alert" hidden><p id="load-message"></p><button id="retry-load" type="button">Retry loading</button></div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

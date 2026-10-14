@@ -1,0 +1,82 @@
+{
+  "purpose": "Sensitivity counts only; no estimate of precision/recall or threshold calibration.",
+  "input_sha256": {
+    "shipments": "1a2b4d66c4dc694111ba37b966486b5b0650df9ec8687402f3434117b140f4b6",
+    "notes": "875c57a896ac3dfac0f712f8865b287bb5d2bd5423d26e798297b74dce87e6dc",
+    "note_rules": "6dce94bfec6379916ad6726a3a3ce2a09049d1ec8758267fc25554dd9aa94e0d"
+  },
+  "scenarios": [
+    {
+      "history_threshold": 10,
+      "peer_threshold": 15,
+      "minimum_rise": 5,
+      "candidates": 18,
+      "justified": 3,
+      "unexplained": 15
+    },
+    {
+      "history_threshold": 10,
+      "peer_threshold": 20,
+      "minimum_rise": 5,
+      "candidates": 18,
+      "justified": 3,
+      "unexplained": 15
+    },
+    {
+      "history_threshold": 10,
+      "peer_threshold": 25,
+      "minimum_rise": 5,
+      "candidates": 13,
+      "justified": 3,
+      "unexplained": 10
+    },
+    {
+      "history_threshold": 15,
+      "peer_threshold": 15,
+      "minimum_rise": 5,
+      "candidates": 17,
+      "justified": 3,
+      "unexplained": 14
+    },
+    {
+      "history_threshold": 15,
+      "peer_threshold": 20,
+      "minimum_rise": 5,
+      "candidates": 17,
+      "justified": 3,
+      "unexplained": 14
+    },
+    {
+      "history_threshold": 15,
+      "peer_threshold": 25,
+      "minimum_rise": 5,
+      "candidates": 12,
+      "justified": 3,
+      "unexplained": 9
+    },
+    {
+      "history_threshold": 20,
+      "peer_threshold": 15,
+      "minimum_rise": 5,
+      "candidates": 17,
+      "justified": 3,
+      "unexplained": 14
+    },
+    {
+      "history_threshold": 20,
+      "peer_threshold": 20,
+      "minimum_rise": 5,
+      "candidates": 17,
+      "justified": 3,
+      "unexplained": 14
+    },
+    {
+      "history_threshold": 20,
+      "peer_threshold": 25,
+      "minimum_rise": 5,
+      "candidates": 12,
+      "justified": 3,
+      "unexplained": 9
+    }
+  ]
+}

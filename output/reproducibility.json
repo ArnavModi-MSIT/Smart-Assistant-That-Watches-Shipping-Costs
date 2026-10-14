@@ -1,0 +1,247 @@
+{
+  "passed": true,
+  "status": "passed",
+  "stability_passed": true,
+  "evaluation_passed": true,
+  "same_full_csv": true,
+  "compared_columns": [
+    "route",
+    "week_of",
+    "cost_per_tonne_km",
+    "vs_own_history",
+    "vs_similar_routes",
+    "flagged",
+    "matched_note_id"
+  ],
+  "reason": "Explanation wording may vary; flags, cited note, verdict and numbers must not.",
+  "runs": [
+    {
+      "run": 1,
+      "csv": "output.csv",
+      "csv_sha256": "b89405b20701903a921fb03bd2ca115abe226f0c74fff11e9ce3dbe3d2911110",
+      "stable_fields_sha256": "1d989550f6821ed24b1cebe77abc185f4aff4d1ff0bfcf5a9086649c2f3513b5",
+      "full_precision_sha256": "0052e5aa5d1e417719fe5122eb2f8d3066d5ba129c6dac9bcfb09a66ebb2bf62",
+      "token_cost_log": {
+        "provider": "Ollama local",
+        "model": "qwen3:1.7b",
+        "temperature": 0,
+        "seed": 42,
+        "llm_calls": 2,
+        "model_attempted": true,
+        "cache_hits": 1,
+        "calls_failed": 0,
+        "rejected_quotes": 0,
+        "source_quote_fallbacks": 0,
+        "total_call_seconds": 9.93397,
+        "model_info": {
+          "status": "recorded",
+          "ollama_version": "0.31.1",
+          "model_digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+          "model_details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "2.0B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 40960,
+            "embedding_length": 2048
+          }
+        },
+        "input_tokens": 215,
+        "output_tokens": 103,
+        "successful_calls": 2,
+        "accepted_quotes": 2,
+        "estimated_api_cost_usd": 0.0,
+        "cost_basis": "No hosted API billing. Local compute/electricity cost is not measured.",
+        "token_basis": "Ollama response counters; failed calls with no counters are unknown, not zero.",
+        "retrieval": "TF-IDF cosine similarity over the supplied notes; no embedding API calls.",
+        "calls": [
+          {
+            "model": "qwen3:1.7b",
+            "note_id": "N002",
+            "input_tokens": 101,
+            "output_tokens": 45,
+            "accepted": true,
+            "error": null,
+            "response_received": true,
+            "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
+            "response_sha256": "6fa96ab59ab70a4a502704a6ba8f5bb1cd6dc4db0078e766cd52ad90c1a52af5",
+            "duration_seconds": 6.384531
+          },
+          {
+            "model": "qwen3:1.7b",
+            "note_id": "N001",
+            "input_tokens": 114,
+            "output_tokens": 58,
+            "accepted": true,
+            "error": null,
+            "response_received": true,
+            "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
+            "response_sha256": "9eafccd4ad8cc9bb7f6979791a827b5ba3b63810022a909c991aa1d8995aea09",
+            "duration_seconds": 3.549439
+          }
+        ]
+      },
+      "input_sha256": {
+        "shipments": "1a2b4d66c4dc694111ba37b966486b5b0650df9ec8687402f3434117b140f4b6",
+        "notes": "875c57a896ac3dfac0f712f8865b287bb5d2bd5423d26e798297b74dce87e6dc",
+        "note_rules": "6dce94bfec6379916ad6726a3a3ce2a09049d1ec8758267fc25554dd9aa94e0d"
+      }
+    },
+    {
+      "run": 2,
+      "csv": "verification/run_2.csv",
+      "csv_sha256": "b89405b20701903a921fb03bd2ca115abe226f0c74fff11e9ce3dbe3d2911110",
+      "stable_fields_sha256": "1d989550f6821ed24b1cebe77abc185f4aff4d1ff0bfcf5a9086649c2f3513b5",
+      "full_precision_sha256": "0052e5aa5d1e417719fe5122eb2f8d3066d5ba129c6dac9bcfb09a66ebb2bf62",
+      "token_cost_log": {
+        "provider": "Ollama local",
+        "model": "qwen3:1.7b",
+        "temperature": 0,
+        "seed": 42,
+        "llm_calls": 2,
+        "model_attempted": true,
+        "cache_hits": 1,
+        "calls_failed": 0,
+        "rejected_quotes": 0,
+        "source_quote_fallbacks": 0,
+        "total_call_seconds": 5.708323,
+        "model_info": {
+          "status": "recorded",
+          "ollama_version": "0.31.1",
+          "model_digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+          "model_details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "2.0B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 40960,
+            "embedding_length": 2048
+          }
+        },
+        "input_tokens": 215,
+        "output_tokens": 103,
+        "successful_calls": 2,
+        "accepted_quotes": 2,
+        "estimated_api_cost_usd": 0.0,
+        "cost_basis": "No hosted API billing. Local compute/electricity cost is not measured.",
+        "token_basis": "Ollama response counters; failed calls with no counters are unknown, not zero.",
+        "retrieval": "TF-IDF cosine similarity over the supplied notes; no embedding API calls.",
+        "calls": [
+          {
+            "model": "qwen3:1.7b",
+            "note_id": "N002",
+            "input_tokens": 101,
+            "output_tokens": 45,
+            "accepted": true,
+            "error": null,
+            "response_received": true,
+            "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
+            "response_sha256": "66a58c3032e54e0662705dc7a234452c9dfd8673b01258f90fac44cde277deaf",
+            "duration_seconds": 2.567225
+          },
+          {
+            "model": "qwen3:1.7b",
+            "note_id": "N001",
+            "input_tokens": 114,
+            "output_tokens": 58,
+            "accepted": true,
+            "error": null,
+            "response_received": true,
+            "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
+            "response_sha256": "3b1659bddcb35be292fbd2950a5363ec2fd282ef9d7ba64181211346c907c6b2",
+            "duration_seconds": 3.141098
+          }
+        ]
+      },
+      "input_sha256": {
+        "shipments": "1a2b4d66c4dc694111ba37b966486b5b0650df9ec8687402f3434117b140f4b6",
+        "notes": "875c57a896ac3dfac0f712f8865b287bb5d2bd5423d26e798297b74dce87e6dc",
+        "note_rules": "6dce94bfec6379916ad6726a3a3ce2a09049d1ec8758267fc25554dd9aa94e0d"
+      }
+    },
+    {
+      "run": 3,
+      "csv": "verification/run_3.csv",
+      "csv_sha256": "b89405b20701903a921fb03bd2ca115abe226f0c74fff11e9ce3dbe3d2911110",
+      "stable_fields_sha256": "1d989550f6821ed24b1cebe77abc185f4aff4d1ff0bfcf5a9086649c2f3513b5",
+      "full_precision_sha256": "0052e5aa5d1e417719fe5122eb2f8d3066d5ba129c6dac9bcfb09a66ebb2bf62",
+      "token_cost_log": {
+        "provider": "Ollama local",
+        "model": "qwen3:1.7b",
+        "temperature": 0,
+        "seed": 42,
+        "llm_calls": 2,
+        "model_attempted": true,
+        "cache_hits": 1,
+        "calls_failed": 0,
+        "rejected_quotes": 0,
+        "source_quote_fallbacks": 0,
+        "total_call_seconds": 5.61232,
+        "model_info": {
+          "status": "recorded",
+          "ollama_version": "0.31.1",
+          "model_digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+          "model_details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen3",
+            "families": [
+              "qwen3"
+            ],
+            "parameter_size": "2.0B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 40960,
+            "embedding_length": 2048
+          }
+        },
+        "input_tokens": 215,
+        "output_tokens": 103,
+        "successful_calls": 2,
+        "accepted_quotes": 2,
+        "estimated_api_cost_usd": 0.0,
+        "cost_basis": "No hosted API billing. Local compute/electricity cost is not measured.",
+        "token_basis": "Ollama response counters; failed calls with no counters are unknown, not zero.",
+        "retrieval": "TF-IDF cosine similarity over the supplied notes; no embedding API calls.",
+        "calls": [
+          {
+            "model": "qwen3:1.7b",
+            "note_id": "N002",
+            "input_tokens": 101,
+            "output_tokens": 45,
+            "accepted": true,
+            "error": null,
+            "response_received": true,
+            "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
+            "response_sha256": "8a62ac2b40788cb99a4231cf3c3329e56d9a36bb126b600650c5538e6d5f57fc",
+            "duration_seconds": 2.467425
+          },
+          {
+            "model": "qwen3:1.7b",
+            "note_id": "N001",
+            "input_tokens": 114,
+            "output_tokens": 58,
+            "accepted": true,
+            "error": null,
+            "response_received": true,
+            "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
+            "response_sha256": "58b930494401bd26ea3e81f171d94ce68db89d88bca24cd7305d062a71762c93",
+            "duration_seconds": 3.144895
+          }
+        ]
+      },
+      "input_sha256": {
+        "shipments": "1a2b4d66c4dc694111ba37b966486b5b0650df9ec8687402f3434117b140f4b6",
+        "notes": "875c57a896ac3dfac0f712f8865b287bb5d2bd5423d26e798297b74dce87e6dc",
+        "note_rules": "6dce94bfec6379916ad6726a3a3ce2a09049d1ec8758267fc25554dd9aa94e0d"
+      }
+    }
+  ]
+}

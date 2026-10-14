@@ -1,0 +1,67 @@
+{
+  "annotation_method": "Human-reviewed source-note scope, impact and event dates; content hashes prevent stale annotations. Unknown notes cannot automatically justify an increase.",
+  "policy": {
+    "uplift_tolerance_percent": 2.0,
+    "uncovered_rise_percent": 5.0,
+    "basis": "Review partial event weeks when uncovered shipments alone contribute at least five percentage points of aggregate rise, matching the default minimum-rise threshold. These tolerances are review policies, not source facts."
+  },
+  "notes": {
+    "N001": {
+      "supports_cost_increase": true,
+      "effective_start": "2025-02-24",
+      "effective_end": "2025-03-08",
+      "window_basis": "Explicit dates in the source note; roads passable by March 9.",
+      "source_sha256": "cfb4e9f4d839e0d8affbe40f11b87ed8fcb2b06ae2b47b3e35ba4454f96891bd"
+    },
+    "N002": {
+      "supports_cost_increase": true,
+      "effective_start": "2025-01-20",
+      "effective_end": "2025-01-26",
+      "window_basis": "Festival week: the Monday-to-Sunday week containing the note date.",
+      "source_sha256": "62ad9924e6e02f9af34bee8057b10e14d63ff027402b7f80f563b69cf96c26c0"
+    },
+    "N003": {
+      "supports_cost_increase": true,
+      "effective_start": "2025-05-05",
+      "effective_end": null,
+      "maximum_uplift_percent": 7.0,
+      "window_basis": "Nationwide fuel step starts this week; no end date stated. Reject once absorbed by all history weeks.",
+      "source_sha256": "0553b7f646253ea70b5c697c9c3b3b790cb15f4a82981edae2f33ad404d07d18"
+    },
+    "N004": {
+      "supports_cost_increase": false,
+      "exclusion_reason": "The affected routes are explicitly outside this dataset.",
+      "source_sha256": "fb828af2e5dacce80f5028538c22629fa8479055045a6d33b78bcb044b15472e"
+    },
+    "N005": {
+      "supports_cost_increase": false,
+      "exclusion_reason": "Maintenance caused delays but costs were not significantly affected.",
+      "source_sha256": "ee83d92ea9e5a6c578043a8ea00bf707eeb83d1a96893461e4e4a8841be90a65"
+    },
+    "N006": {
+      "supports_cost_increase": false,
+      "exclusion_reason": "Stable demand and no major disruptions do not explain an increase.",
+      "source_sha256": "c014a34bcbb8217e4bb8f58a0852336030c9cfed8a2c4758287e842d88689aa9"
+    },
+    "N007": {
+      "supports_cost_increase": false,
+      "exclusion_reason": "Improved roads provide no evidence of increased freight costs.",
+      "source_sha256": "dffab45951a2eebc5949c68d1430c5c430942eb80c7965cd817d0c47f6a1ac5e"
+    },
+    "N008": {
+      "supports_cost_increase": false,
+      "exclusion_reason": "Freight movement remained normal, with no significant disruption.",
+      "source_sha256": "6d8f0fb9a9234cdd1a95e7b40a89f8ffb2c6fc80ee4bcde2cbd7f6c8032cca89"
+    },
+    "N009": {
+      "supports_cost_increase": false,
+      "exclusion_reason": "Confirms recovery; it does not extend the expired flooding window.",
+      "source_sha256": "4b3d51efc8bd37d0ed8b9a2eef776fff52cfc26fc98538d0757606fee5c4e2be"
+    },
+    "N010": {
+      "supports_cost_increase": false,
+      "exclusion_reason": "Compliance costs were absorbed without a rate change.",
+      "source_sha256": "6d244849117366734ea774d7e5d896fd6a64eeef02abe3653d4efdc036ab197f"
+    }
+  }
+}

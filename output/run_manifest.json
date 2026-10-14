@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "command": "verify",
+  "strict": true,
+  "evaluation_passed": true,
+  "reproducibility_passed": true,
+  "files": {
+    "environment.json": "38d946cc331119da7e674ce07d25ccd78dd8613d16207d37aeab26925e750ceb",
+    "evaluation.json": "c90e0a5cdff1fb552df1f322207dd8d78615f70ef77d9b887bea6b734350f231",
+    "output.csv": "b89405b20701903a921fb03bd2ca115abe226f0c74fff11e9ce3dbe3d2911110",
+    "reproducibility.json": "e6c3928f6643fd31732c1578ab126ab4fb46024984801da1891408a66b4e89b6",
+    "results.json": "b229e27d154a6216a4f0b3be234ff7a95a9b914bd71590eae0f84660cb3a0382",
+    "run_summary.json": "8bafe88f61a412a571e7e8ad47d11d1664013e49bc607708dfc5dce75e6e225f",
+    "threshold_sensitivity.json": "32c18518aa25e9090141bfa7c3fbe7d43b7cfe905254578deaedf711d13a03d2",
+    "token_cost_log.json": "4a9beb27eef7efee220b4fdaef8c921306463b7bce7527d6ea95a3610ef495d2",
+    "verification/run_2.csv": "b89405b20701903a921fb03bd2ca115abe226f0c74fff11e9ce3dbe3d2911110",
+    "verification/run_3.csv": "b89405b20701903a921fb03bd2ca115abe226f0c74fff11e9ce3dbe3d2911110"
+  }
+}

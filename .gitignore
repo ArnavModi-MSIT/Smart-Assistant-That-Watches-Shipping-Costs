@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.log
+tmp/
+output-*/
+submission/
+FreightWatch_Submission.zip

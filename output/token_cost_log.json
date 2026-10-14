@@ -1,0 +1,64 @@
+{
+  "provider": "Ollama local",
+  "model": "qwen3:1.7b",
+  "temperature": 0,
+  "seed": 42,
+  "llm_calls": 2,
+  "model_attempted": true,
+  "cache_hits": 1,
+  "calls_failed": 0,
+  "rejected_quotes": 0,
+  "source_quote_fallbacks": 0,
+  "total_call_seconds": 9.93397,
+  "model_info": {
+    "status": "recorded",
+    "ollama_version": "0.31.1",
+    "model_digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+    "model_details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3",
+      "families": [
+        "qwen3"
+      ],
+      "parameter_size": "2.0B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 40960,
+      "embedding_length": 2048
+    }
+  },
+  "input_tokens": 215,
+  "output_tokens": 103,
+  "successful_calls": 2,
+  "accepted_quotes": 2,
+  "estimated_api_cost_usd": 0.0,
+  "cost_basis": "No hosted API billing. Local compute/electricity cost is not measured.",
+  "token_basis": "Ollama response counters; failed calls with no counters are unknown, not zero.",
+  "retrieval": "TF-IDF cosine similarity over the supplied notes; no embedding API calls.",
+  "calls": [
+    {
+      "model": "qwen3:1.7b",
+      "note_id": "N002",
+      "input_tokens": 101,
+      "output_tokens": 45,
+      "accepted": true,
+      "error": null,
+      "response_received": true,
+      "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
+      "response_sha256": "6fa96ab59ab70a4a502704a6ba8f5bb1cd6dc4db0078e766cd52ad90c1a52af5",
+      "duration_seconds": 6.384531
+    },
+    {
+      "model": "qwen3:1.7b",
+      "note_id": "N001",
+      "input_tokens": 114,
+      "output_tokens": 58,
+      "accepted": true,
+      "error": null,
+      "response_received": true,
+      "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
+      "response_sha256": "9eafccd4ad8cc9bb7f6979791a827b5ba3b63810022a909c991aa1d8995aea09",
+      "duration_seconds": 3.549439
+    }
+  ]
+}
