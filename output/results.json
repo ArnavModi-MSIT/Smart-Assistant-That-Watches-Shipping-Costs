@@ -28,7 +28,7 @@
       "notes": "875c57a896ac3dfac0f712f8865b287bb5d2bd5423d26e798297b74dce87e6dc",
       "note_rules": "6dce94bfec6379916ad6726a3a3ce2a09049d1ec8758267fc25554dd9aa94e0d"
     },
-    "analysis_wall_seconds": 7.812023,
+    "analysis_wall_seconds": 4.554183,
     "validation": {
       "command": "verify",
       "strict": true,
@@ -20301,7 +20301,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N009 was rejected: Note was published after this week."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N001 was rejected: Event window does not cover any shipment date in this week. Reviewed event window: 2025-02-24 to 2025-03-08."
     },
     {
       "route": "Chennai-Bangalore",
@@ -20427,7 +20427,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N009 was rejected: Confirms recovery; it does not extend the expired flooding window."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N001 was rejected: Event window does not cover any shipment date in this week. Reviewed event window: 2025-02-24 to 2025-03-08."
     },
     {
       "route": "Chennai-Bangalore",
@@ -43772,7 +43772,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N007 was rejected: Improved roads provide no evidence of increased freight costs."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks."
     },
     {
       "route": "Delhi-Jaipur",
@@ -43891,7 +43891,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N007 was rejected: Improved roads provide no evidence of increased freight costs."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks."
     },
     {
       "route": "Delhi-Jaipur",
@@ -85892,7 +85892,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Note was published after this week."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Observed rise exceeds the note's stated uplift (allowance 2.9%). Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -87429,7 +87429,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Note was published after this week."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -87808,7 +87808,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -88056,7 +88056,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -88173,7 +88173,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -88304,7 +88304,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -88559,7 +88559,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -88814,7 +88814,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -88938,7 +88938,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -89179,7 +89179,7 @@
       "eligible_note_ids": [],
       "matched_note_id": "",
       "flagged": "Yes",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     }
   ],
   "csv_rows": [
@@ -90851,7 +90851,7 @@
       "vs_similar_routes": "+33.8% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N009 was rejected: Note was published after this week."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N001 was rejected: Event window does not cover any shipment date in this week. Reviewed event window: 2025-02-24 to 2025-03-08."
     },
     {
       "route": "Chennai-Bangalore",
@@ -90861,7 +90861,7 @@
       "vs_similar_routes": "+33.5% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N009 was rejected: Confirms recovery; it does not extend the expired flooding window."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N001 was rejected: Event window does not cover any shipment date in this week. Reviewed event window: 2025-02-24 to 2025-03-08."
     },
     {
       "route": "Chennai-Bangalore",
@@ -92761,7 +92761,7 @@
       "vs_similar_routes": "+21.0% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N007 was rejected: Improved roads provide no evidence of increased freight costs."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks."
     },
     {
       "route": "Delhi-Jaipur",
@@ -92771,7 +92771,7 @@
       "vs_similar_routes": "+19.7% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N007 was rejected: Improved roads provide no evidence of increased freight costs."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks."
     },
     {
       "route": "Delhi-Jaipur",
@@ -96201,7 +96201,7 @@
       "vs_similar_routes": "+20.6% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Note was published after this week."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Observed rise exceeds the note's stated uplift (allowance 2.9%). Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96321,7 +96321,7 @@
       "vs_similar_routes": "+23.6% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Note was published after this week."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96351,7 +96351,7 @@
       "vs_similar_routes": "+22.9% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96371,7 +96371,7 @@
       "vs_similar_routes": "+24.8% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96381,7 +96381,7 @@
       "vs_similar_routes": "+28.3% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96391,7 +96391,7 @@
       "vs_similar_routes": "+24.1% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96411,7 +96411,7 @@
       "vs_similar_routes": "+31.6% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96431,7 +96431,7 @@
       "vs_similar_routes": "+37.4% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96441,7 +96441,7 @@
       "vs_similar_routes": "+38.8% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     },
     {
       "route": "Mumbai-Pune",
@@ -96461,7 +96461,7 @@
       "vs_similar_routes": "+38.9% vs similar-length routes this week",
       "flagged": "Yes",
       "matched_note_id": "",
-      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N006 was rejected: Stable demand and no major disruptions do not explain an increase."
+      "reason": "Unexplained cost rise: no note supports this route, shipment dates and increase. History uses 8 prior observed week(s) within the preceding 8 calendar weeks. Note N003 was rejected: Event is already included throughout the historical baseline. Reviewed event window: 2025-05-05 to onward."
     }
   ],
   "evidence_rules": {
@@ -96604,7 +96604,7 @@
     "calls_failed": 0,
     "rejected_quotes": 0,
     "source_quote_fallbacks": 0,
-    "total_call_seconds": 7.68016,
+    "total_call_seconds": 4.447775,
     "model_info": {
       "status": "recorded",
       "ollama_version": "0.31.1",
@@ -96640,8 +96640,8 @@
         "error": null,
         "response_received": true,
         "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
-        "response_sha256": "6e9d4c86a4c7fe03d47d188d375d97782e138ffc406431759d6d4e214fa4ad9d",
-        "duration_seconds": 4.656779
+        "response_sha256": "00a00e2fe5917def4b9f9b174a1c9290446730baf439864603dfb5201a49557d",
+        "duration_seconds": 2.057128
       },
       {
         "model": "qwen3:1.7b",
@@ -96652,8 +96652,8 @@
         "error": null,
         "response_received": true,
         "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
-        "response_sha256": "8f7c96d257a691085be05319e37c8ab5ac6f253d3205b8c58ad5434143433ec5",
-        "duration_seconds": 3.023381
+        "response_sha256": "b39c0638e4f25ef0816f0a9d67084cfde123bf30ad962eee2061e5d273e4039e",
+        "duration_seconds": 2.390647
       }
     ]
   }

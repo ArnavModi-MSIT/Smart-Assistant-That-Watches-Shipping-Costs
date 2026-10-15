@@ -69,6 +69,17 @@ Version 1.3.1 keeps the original brief as the scope: removed the additional BM25
 
 The expanded checks are 98 Python tests and nine frontend checks, seven authored Q&A cases (five accepted real Qwen calls; two invalid requests make no inference), and the unchanged independent 5,096-field Decimal audit. The core CSV classification remains 14 unexplained and three justified. Fresh three-run batch verification fingerprints the upgraded code; `evidence/rag_verification.json` is tied to that bundle and retains actual inference data. These checks do not establish general accuracy or unrestricted chat capability.
 
+## October 15: bounded improvements from the new-repository screen
+
+Screened pinned snapshots of 36 new repositories through source inventories, syntax/AST checks and saved-CSV comparisons. Thirty-four had a recognizable stored export; 32 of those selected exports matched the displayed numeric reference. This is a static/data screen, not 36 complete runtime audits. Targeted reading focused on evidence gates, explanations, Q&A validation, accounting and evaluation in selected implementations. Full inventories and scoped findings remain under ignored `tmp/new-code-review-2026-10-15/`.
+
+Two patterns warranted small independent changes:
+
+- AnanyaSingh2305's `freight_assistant/explanations.py::rejected_context` prefers known cost-raising context. Our March 10 explanation previously led with future N009, and September drift led with future N006. The revised reason shows expired N001's actual window or N003's absorption into history. Eligibility, flags and numeric fields are unchanged.
+- HarshSrivastava77's `fcw/qa.py::validate_answer` rejects responses that omit flagged weeks. Our validator previously accepted a monthly plan selecting only the supported March 3 week from four retrieved findings. For small retrieved scopes (at most five findings), the model must now include every finding; otherwise the complete deterministic answer is used. Large-scope summaries retain complete counts and selected evidence.
+
+These are patterns, not copied modules or new dependencies. Added three focused regressions and a real mixed-month Q&A case. Current validation is 101 Python tests, nine frontend checks and eight authored Q&A cases, with the independent numeric audit and three-run verification retained. Competitor applications and hosted APIs were not executed for this screen. The internal research stays outside the submission ZIP.
+
 ## Remaining limits
 
 - Thresholds and note windows include documented human judgments. The ten labels and synthetic regressions are not a held-out accuracy benchmark. Anomalies do not prove overcharging or causation.

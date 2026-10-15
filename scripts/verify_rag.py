@@ -15,6 +15,7 @@ CASES = [
     ("festival", "Why Ahmedabad-Mumbai on 2025-01-20?", "F:Ahmedabad-Mumbai:2025-01-20", "No (justified)"),
     ("expired_flood", "Why Chennai-Bangalore on 2025-03-10?", "F:Chennai-Bangalore:2025-03-10", "Yes"),
     ("partial_flood", "Why Chennai-Bangalore on 2025-03-03?", "F:Chennai-Bangalore:2025-03-03", "No (justified)"),
+    ("mixed_month", "Why Chennai-Bangalore in March 2025?", "F:Chennai-Bangalore:2025-03-10", "Yes"),
     ("nonimpact", "What does note N010 say?", "N010", None),
     ("future_festival", "Why Ahmedabad-Mumbai on 2025-01-13?", "F:Ahmedabad-Mumbai:2025-01-13", "No"),
     ("reverse_route", "Why Mumbai-Ahmedabad on 2025-01-20?", None, None),
@@ -45,10 +46,11 @@ def main():
         matched = (expected in retrieved and expected in used) if expected else not retrieved and not response["findings"]
         verdict_ok = flag is None or any(f["flagged"] == flag for f in response["findings"])
         generation_ok = not (args.llm_model and expected) or rag["mode"] == "local_llm"
-        passed = matched and verdict_ok and generation_ok
+        coverage_ok = name != "mixed_month" or {f["week_of"] for f in response["findings"]} == {"2025-02-24", "2025-03-03", "2025-03-10", "2025-03-17"}
+        passed = matched and verdict_ok and generation_ok and coverage_ok
         checks.append({"case": name, "question": question, "expected_source": expected, "expected_verdict": flag,
                        "retrieval_and_selection_passed": matched, "verdict_passed": verdict_ok,
-                       "live_generation_passed": generation_ok, "passed": passed, "result": response})
+                       "live_generation_passed": generation_ok, "scope_coverage_passed": coverage_ok, "passed": passed, "result": response})
         print(f"{name}: {'PASS' if passed else 'FAIL'} ({rag['mode']})", flush=True)
     first = assistant.answer(CASES[0][1])
     cache_ok = not args.llm_model or first["rag"]["mode"] == "local_llm_cached" and first["rag"]["usage"]["input_tokens"] == 0
@@ -61,7 +63,7 @@ def main():
               "hosted_api_cost_usd": 0., "cost_basis": "Local Ollama; hardware/electricity cost unmeasured.",
               "run_manifest_sha256": hashlib.sha256(snapshot["run_manifest.json"]).hexdigest(),
               "source_sha256": verified_sources,
-              "evaluation_scope": "Seven authored cases; not a general language or anomaly accuracy benchmark.", "checks": checks}
+              "evaluation_scope": "Eight authored cases; not a general language or anomaly accuracy benchmark.", "checks": checks}
     if current_sources() != verified_sources:
         raise ValueError("Source code changed during RAG verification; rerun before saving evidence.")
     args.save.parent.mkdir(parents=True, exist_ok=True)

@@ -31,7 +31,7 @@ Examples:
 {"items":[{"source_id":"F:Ahmedabad-Mumbai:2025-01-20","facts":["rate","verdict","history","evidence"]}]}
 ```
 
-5. Independently validate that each source was retrieved, all requested keys exist, sources/keys are unique, findings include their rate/verdict/evidence/exposure constraints, and notes retain window or nonimpact limitations. A route-week answer must include a finding. Reject prose fields and invented fact keys even if a citation ID is valid.
+5. Independently validate that each source was retrieved, all requested keys exist, sources/keys are unique, findings include their rate/verdict/evidence/exposure constraints, and notes retain window or nonimpact limitations. A route-week answer must include a finding. When at most five findings are retrieved, include every one so a monthly answer cannot omit its unexplained weeks. Larger scopes retain complete counts and show selected evidence. Reject prose fields and invented fact keys even if a citation ID is valid.
 6. Render only the server's selected verified sentences, with source IDs. The model selects and orders facts; **Python renders the English**. We do not claim unrestricted prose generation or a general semantic-entailment model. Verdicts and numbers cannot be changed by an answer plan. An invalid plan or provider failure uses an explicitly labeled deterministic retrieval answer.
 
 Each finding has a stable `F:<directional-route>:<Monday-date>` ID. A standalone original note is source context, not a new justification for every nearby week. An unexplained finding always retains the absence of an eligible cause. Partial support retains its exposure percentage and causal limitation.
@@ -42,9 +42,9 @@ Each finding has a stable `F:<directional-route>:<Monday-date>` ID. A standalone
 python scripts/verify_rag.py --llm-model qwen3:1.7b
 ```
 
-This verifies festival support, expired flooding, partial flooding, a nonimpact note, a future festival, reversed direction and an empty requested status. The five supported question requests require **accepted real model plans** when a model is specified; fallback output cannot masquerade as a passing AI check. The two invalid scopes make no model call. A repeated festival question verifies the cache without charging its original tokens again.
+This verifies festival support, expired flooding, partial flooding, a mixed March query containing both supported and unexplained weeks, a nonimpact note, a future festival, reversed direction and an empty requested status. The six valid-scope question requests require **accepted real model plans** when a model is specified; fallback output cannot masquerade as a passing AI check. The two invalid scopes make no model call. A repeated festival question verifies the cache without charging its original tokens again.
 
-`evidence/rag_verification.json` records each question, retrieved sources/scores, expected source/verdict, plan, exact model prompt and response, measured provider counters, duration, response hash and model digest. It includes the verified output-manifest hash and source fingerprints. Packaging refuses stale or failing RAG evidence. The seven authored cases are a small regression set, not general language/retrieval accuracy.
+`evidence/rag_verification.json` records each question, retrieved sources/scores, expected source/verdict, plan, exact model prompt and response, measured provider counters, duration, response hash and model digest. It includes the verified output-manifest hash and source fingerprints. Packaging refuses stale or failing RAG evidence. The eight authored cases are a small regression set, not general language/retrieval accuracy.
 
 The batch's `output/token_cost_log.json` accounts only for the first full analysis run's quote-selection calls. Q&A has its own usage evidence. Metadata requests are distinct from inference calls. Cache hits report zero new tokens, while original counters remain separately available. Missing provider counters stay unknown. Hosted API charges are USD 0 for this local path; hardware/electricity cost is unmeasured.
 

@@ -26,6 +26,8 @@ Built with Python's standard library and a small HTML/CSS/JavaScript interface. 
 
 The brief does not prescribe an anomaly threshold. Our transparent default is a history rise of at least 15%, or a rise of at least 5% with a peer gap of at least 20%. These are configurable judgment calls, not a learned accuracy claim.
 
+For unexplained increases, the explanation names a relevant cost-raising note known by that week when available and states why it fails. For example, March 10's flooding explanation shows N001's expired March 8 window.
+
 The CSV follows the supplied header and presentation:
 
 ```text
@@ -51,7 +53,7 @@ Q&A is the brief's stretch goal. Ask a directional route and date/month/year, su
 
 ## How we checked it
 
-Ten labeled cases cover the supplied samples, supported events, expired evidence and stable observations. The 98 Python tests cover arithmetic, temporal/citation failures, malformed inputs, model fallback and output handling. Nine frontend checks cover request handling and safe rendering. An independent Decimal reconstruction checks all 728 route-weeks and 5,096 numeric fields. These are regression checks, not general accuracy on unseen data.
+Ten labeled cases cover the supplied samples, supported events, expired evidence and stable observations. The 101 Python tests cover arithmetic, temporal/citation failures, malformed inputs, model fallback and output handling. Nine frontend checks cover request handling and safe rendering. An independent Decimal reconstruction checks all 728 route-weeks and 5,096 numeric fields. These are regression checks, not general accuracy on unseen data.
 
 ```powershell
 python -m unittest discover -q

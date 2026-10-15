@@ -111,6 +111,16 @@ class ProvidedDataTests(unittest.TestCase):
         self.assertEqual(after["flagged"], "Yes")
         self.assertEqual(after["matched_note_id"], "")
 
+    def test_rejection_explains_known_event_instead_of_future_distractor(self):
+        flood = self.lookup[("Chennai-Bangalore", "2025-03-10")]["reason"]
+        self.assertIn("Note N001 was rejected", flood)
+        self.assertIn("2025-02-24 to 2025-03-08", flood)
+        self.assertNotIn("N009", flood)
+        drift = self.lookup[("Mumbai-Pune", "2025-09-15")]["reason"]
+        self.assertIn("Note N003 was rejected", drift)
+        self.assertIn("already included throughout the historical baseline", drift)
+        self.assertNotIn("N006", drift)
+
     def test_route_and_publication_filters(self):
         row = self.lookup[("Mumbai-Pune", "2025-09-15")]
         flood = self.notes[0]

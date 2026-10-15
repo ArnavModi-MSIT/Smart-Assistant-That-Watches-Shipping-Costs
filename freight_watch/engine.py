@@ -111,6 +111,18 @@ def output_row(row):
             "flagged": row["flagged"], "matched_note_id": row["matched_note_id"], "reason": row["reason"]}
 
 
+def rejected_context(row, inspected, matcher):
+    """Prefer a known cost-raising event when explaining why support failed."""
+    week_end = min(date.max.toordinal(), date.fromisoformat(row["week_of"]).toordinal() + 6)
+    relevant = [item for item in inspected if not item["eligible"]
+                and matcher.notes[item["note_id"]].applies_to in (row["route"], "All Routes")
+                and matcher.notes[item["note_id"]].day.toordinal() <= week_end
+                and matcher.rules.get(item["note_id"], {}).get("supports_cost_increase")]
+    return min(relevant, key=lambda item: (
+        matcher.notes[item["note_id"]].applies_to == "All Routes",
+        -matcher.notes[item["note_id"]].day.toordinal(), item["note_id"]), default=None)
+
+
 def analyze(shipments_path, notes_path, thresholds=None, quote_writer=None, rules_path=None):
     thresholds = thresholds or Thresholds()
     quote_writer = quote_writer or QuoteWriter()
@@ -145,9 +157,11 @@ def analyze(shipments_path, notes_path, thresholds=None, quote_writer=None, rule
         else:
             row["flagged"] = "Yes"
             row["reason"] = "Unexplained cost rise: no note supports this route, shipment dates and increase. " + coverage
-            relevant = next((n for n in inspected if matcher.notes[n["note_id"]].applies_to in (row["route"], "All Routes")), None)
+            relevant = rejected_context(row, inspected, matcher)
             if relevant:
+                rule = matcher.rules[relevant["note_id"]]
                 row["reason"] += f" Note {relevant['note_id']} was rejected: {relevant['check']}"
+                row["reason"] += f" Reviewed event window: {rule['effective_start']} to {rule.get('effective_end') or 'onward'}."
         if matched and candidate and matched.get("exposure", {}).get("affected_tonne_km_fraction", 1) < 1:
             exposure = matched["exposure"]
             row["reason"] += (f" Partial event exposure: {exposure['affected_tonne_km_fraction']:.1%} of tonne-km; "

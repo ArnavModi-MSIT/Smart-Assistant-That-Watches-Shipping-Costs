@@ -1,6 +1,6 @@
 # Validation record
 
-Verified locally on October 14, 2026 (India time), using the supplied inputs and default thresholds.
+Engine, model and package checks refreshed locally on October 15, 2026 (India time), using the supplied inputs and default thresholds. Browser observations below come from the October 14 review.
 
 ## Results
 
@@ -10,14 +10,14 @@ Verified locally on October 14, 2026 (India time), using the supplied inputs and
 | Output coverage | 728 route-week rows, exact eight-column header |
 | Anomalous route-weeks | 17 candidates: 14 unexplained, three justified |
 | Labeled reference cases | 10/10 passed; this small set is not a general accuracy estimate |
-| Python test suite | 98 tests passed, including grounded RAG regressions; resource warnings treated as errors |
+| Python test suite | 101 tests passed, including grounded RAG regressions; resource warnings treated as errors |
 | JavaScript syntax | `node --check web/app.js` passed |
 | Frontend resilience/rendering | Nine Node checks passed, including escaped RAG trace rendering |
 | Independent arithmetic | 728 route-weeks / 5,096 numeric fields checked with 50-digit Decimal; maximum absolute difference 2 × 10⁻¹¹ |
 | Offline repetition | Three unchanged runs; identical stable fields and full CSVs |
 | Local AI repetition | Three unchanged runs; identical stable fields and full CSVs |
 | AI token accounting | Two successful calls, 215 input tokens and 103 output tokens; two accepted quotes and one cache hit |
-| Grounded Q&A | Seven authored cases passed; five accepted actual Qwen plans, two invalid scopes rejected without inference; cache check passed |
+| Grounded Q&A | Eight authored cases passed; six accepted actual Qwen plans, two invalid scopes rejected without inference; cache check passed |
 | Failure gate | Repeated incorrect output under extreme thresholds returns exit code 1 |
 | Full precision | Three runs match full-precision numeric hashes as well as CSV fields |
 | Model provenance | Ollama 0.31.1 and model digest recorded in environment and token logs |

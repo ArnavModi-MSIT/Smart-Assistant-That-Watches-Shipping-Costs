@@ -92,6 +92,29 @@ class GroundedRagTests(unittest.TestCase):
         for route, count in expected.items(): self.assertIn(f"{route}: {count} week(s)", result["answer"])
         self.assertEqual(len(result["rag"]["retrieved"]), 8)
 
+    def test_monthly_plan_must_include_retrieved_unexplained_weeks(self):
+        _, docs, _ = self.assistant.retrieve("Why Chennai-Bangalore in March 2025?")
+        findings = [doc for doc in docs if doc["kind"] == "finding"]
+        supported = next(doc for doc in findings if doc["source_id"].endswith("2025-03-03"))
+        partial = {"items": [{"source_id": supported["source_id"], "facts": list(supported["facts"])}]}
+        with self.assertRaisesRegex(ValueError, "omits retrieved weeks"):
+            RagAssistant.validate_plan(partial, docs, True)
+        complete = {"items": [{"source_id": doc["source_id"], "facts": list(doc["facts"])} for doc in findings]}
+        self.assertEqual(RagAssistant.validate_plan(complete, docs, True), complete)
+
+    def test_partial_monthly_generation_falls_back_to_complete_findings(self):
+        question = "Why Chennai-Bangalore in March 2025?"
+        assistant = self.model()
+        _, docs, _ = assistant.retrieve(question)
+        supported = next(doc for doc in docs if doc["source_id"] == "F:Chennai-Bangalore:2025-03-03")
+        partial = {"items": [{"source_id": supported["source_id"], "facts": list(supported["facts"])}]}
+        with patch("freight_watch.llm.urlopen", return_value=self.response(partial)):
+            result = assistant.answer(question)
+        self.assertEqual(result["rag"]["mode"], "local_llm_fallback")
+        self.assertEqual({f["week_of"] for f in result["findings"]},
+                         {"2025-02-24", "2025-03-03", "2025-03-10", "2025-03-17"})
+        self.assertEqual({f["flagged"] for f in result["findings"]}, {"Yes", "No (justified)"})
+
     def test_fabricated_cause_wrong_source_and_changed_numbers_rejected(self):
         bad = [
             {"items": [{"source_id": self.source, "facts": ["rate", "verdict", "evidence"], "reason": "Transporter strike"}]},
