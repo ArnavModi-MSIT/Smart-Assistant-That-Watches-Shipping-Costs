@@ -7,3 +7,20 @@ tmp/
 output-*/
 submission/
 FreightWatch_Submission.zip
+
+# Local development and review material
+tests/
+scripts/
+evidence/
+AUDIT_RESPONSE.md
+CODE_REVIEW.md
+COMPETITOR_REVIEW.md
+RAG.md
+VALIDATION.md
+requirements.txt
+AI Intern Case Study.zip
+test.zip
+AI Intern Case Study/AI Intern Case Study/FreightTiger_Intern_CaseStudy.pdf
+output/demo_preview.jpg
+output/review_preview.jpg
+output/threshold_sensitivity.json

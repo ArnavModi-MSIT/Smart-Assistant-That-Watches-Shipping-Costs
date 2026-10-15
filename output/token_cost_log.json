@@ -9,7 +9,7 @@
   "calls_failed": 0,
   "rejected_quotes": 0,
   "source_quote_fallbacks": 0,
-  "total_call_seconds": 4.447775,
+  "total_call_seconds": 4.572321,
   "model_info": {
     "status": "recorded",
     "ollama_version": "0.31.1",
@@ -45,8 +45,8 @@
       "error": null,
       "response_received": true,
       "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
-      "response_sha256": "00a00e2fe5917def4b9f9b174a1c9290446730baf439864603dfb5201a49557d",
-      "duration_seconds": 2.057128
+      "response_sha256": "df03407119bd1faad2e9d9719902f597ee1c93549dc0753e9e291932b522de7f",
+      "duration_seconds": 2.161643
     },
     {
       "model": "qwen3:1.7b",
@@ -57,8 +57,8 @@
       "error": null,
       "response_received": true,
       "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
-      "response_sha256": "b39c0638e4f25ef0816f0a9d67084cfde123bf30ad962eee2061e5d273e4039e",
-      "duration_seconds": 2.390647
+      "response_sha256": "885c9dd0d648acbac73299eeb68a6747e8b1614718062ee489809f9cf261fea7",
+      "duration_seconds": 2.410678
     }
   ]
 }

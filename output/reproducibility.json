@@ -32,7 +32,7 @@
         "calls_failed": 0,
         "rejected_quotes": 0,
         "source_quote_fallbacks": 0,
-        "total_call_seconds": 4.447775,
+        "total_call_seconds": 4.572321,
         "model_info": {
           "status": "recorded",
           "ollama_version": "0.31.1",
@@ -68,8 +68,8 @@
             "error": null,
             "response_received": true,
             "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
-            "response_sha256": "00a00e2fe5917def4b9f9b174a1c9290446730baf439864603dfb5201a49557d",
-            "duration_seconds": 2.057128
+            "response_sha256": "df03407119bd1faad2e9d9719902f597ee1c93549dc0753e9e291932b522de7f",
+            "duration_seconds": 2.161643
           },
           {
             "model": "qwen3:1.7b",
@@ -80,8 +80,8 @@
             "error": null,
             "response_received": true,
             "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
-            "response_sha256": "b39c0638e4f25ef0816f0a9d67084cfde123bf30ad962eee2061e5d273e4039e",
-            "duration_seconds": 2.390647
+            "response_sha256": "885c9dd0d648acbac73299eeb68a6747e8b1614718062ee489809f9cf261fea7",
+            "duration_seconds": 2.410678
           }
         ]
       },
@@ -108,7 +108,7 @@
         "calls_failed": 0,
         "rejected_quotes": 0,
         "source_quote_fallbacks": 0,
-        "total_call_seconds": 4.305265,
+        "total_call_seconds": 4.41484,
         "model_info": {
           "status": "recorded",
           "ollama_version": "0.31.1",
@@ -144,8 +144,8 @@
             "error": null,
             "response_received": true,
             "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
-            "response_sha256": "1272307b8c48e1000f457a9126b183c03384884cbfab608a76651c30671c145c",
-            "duration_seconds": 2.014361
+            "response_sha256": "101724d1bce38ce8d13fe2f4e23aab2ae257d77cd57e61441d4b8f3a8e10b1fb",
+            "duration_seconds": 1.94305
           },
           {
             "model": "qwen3:1.7b",
@@ -156,8 +156,8 @@
             "error": null,
             "response_received": true,
             "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
-            "response_sha256": "5fba104671d1d88121aa1e8069092f36f6355fb9ea68e92a8c69113bc0dff584",
-            "duration_seconds": 2.290904
+            "response_sha256": "72d1a9574314624a4417759330158b119ec83645b6bf979327057eeac78cdfe4",
+            "duration_seconds": 2.47179
           }
         ]
       },
@@ -184,7 +184,7 @@
         "calls_failed": 0,
         "rejected_quotes": 0,
         "source_quote_fallbacks": 0,
-        "total_call_seconds": 4.291896,
+        "total_call_seconds": 4.519009,
         "model_info": {
           "status": "recorded",
           "ollama_version": "0.31.1",
@@ -220,8 +220,8 @@
             "error": null,
             "response_received": true,
             "prompt_sha256": "c79ecaef3e87b21ef9cdd0443ed2728b3ab9df178a2c6a2e35ea245adeb86f13",
-            "response_sha256": "f9ad71b149add489b4db95e6d976e6cc7ec41b1b06bc8969a8a515a753924b53",
-            "duration_seconds": 1.908779
+            "response_sha256": "c951cb9ec967744a953a0821e7bd64295d6e7c8eae2364d3a5a19397ae20e203",
+            "duration_seconds": 2.069045
           },
           {
             "model": "qwen3:1.7b",
@@ -232,8 +232,8 @@
             "error": null,
             "response_received": true,
             "prompt_sha256": "8b7404b2619eb461b4e77240f549a711ece59f3a19a514d79b2be7fea58a3085",
-            "response_sha256": "c3271d64c30aea9e2621adfbe61ddbfe234464279ea0a807c3781d10c2b108f3",
-            "duration_seconds": 2.383117
+            "response_sha256": "d8b9ab021c14bbeba938c2b74fde0d5a56cbe8979e4a6301ebae09da04fc12a6",
+            "duration_seconds": 2.449964
           }
         ]
       },

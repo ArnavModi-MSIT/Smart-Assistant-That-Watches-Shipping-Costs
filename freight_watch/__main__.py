@@ -11,7 +11,7 @@ import io
 from time import perf_counter
 
 from .engine import analyze
-from .evaluation import evaluate, threshold_sensitivity
+from .evaluation import evaluate
 from .io import ROOT, DATA_DIR, OUTPUT_COLUMNS, write_json, write_output, file_hash
 from .llm import QuoteWriter
 from .models import Thresholds
@@ -53,8 +53,7 @@ def publish(output_dir, reports, runs, evaluation, repeat, environment, command,
             write_output(stage / "verification" / f"run_{index}.csv", other["csv_rows"])
         files = {"results.json": report, "run_summary.json": report["summary"],
                  "token_cost_log.json": report["token_cost_log"], "evaluation.json": evaluation,
-                 "reproducibility.json": repeat, "environment.json": environment,
-                 "threshold_sensitivity.json": threshold_sensitivity(report)}
+                 "reproducibility.json": repeat, "environment.json": environment}
         for name, value in files.items():
             write_json(stage / name, value)
         manifest = {"schema_version": 1, "command": command, "strict": strict, "evaluation_passed": evaluation_ok,
@@ -75,7 +74,7 @@ def main(argv=None):
     parser.add_argument("--shipments", type=Path, default=DATA_DIR / "shipment_records.csv")
     parser.add_argument("--notes", type=Path, default=DATA_DIR / "context_notes.csv")
     parser.add_argument("--rules", type=Path, default=ROOT / "config" / "note_rules.json")
-    parser.add_argument("--labels", type=Path, default=ROOT / "tests" / "fixtures" / "labeled_weeks.json")
+    parser.add_argument("--labels", type=Path, default=ROOT / "config" / "labeled_weeks.json")
     parser.add_argument("--require-evaluation-pass", action="store_true", help="Make exploratory run fail on reference or citation failures.")
     parser.add_argument("--output-dir", type=Path, default=Path("output"))
     parser.add_argument("--history-threshold", type=float, default=15)

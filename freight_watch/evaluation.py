@@ -2,14 +2,13 @@
 
 from .io import ROOT, decode_json
 from .models import Note
-from .models import Thresholds
 from .evidence import EvidenceMatcher
 from .retrieval import NoteIndex
 from datetime import date
 
 
 def evaluate(report, fixture_path=None, rules_path=None, labels_bytes=None):
-    path = fixture_path or ROOT / "tests" / "fixtures" / "labeled_weeks.json"
+    path = fixture_path or ROOT / "config" / "labeled_weeks.json"
     labels = decode_json(path.read_bytes() if labels_bytes is None else labels_bytes, "Reference labels")
     if not isinstance(labels, list) or not labels:
         raise ValueError("Reference evaluation requires a nonempty list of labels.")
@@ -58,17 +57,3 @@ def evaluate(report, fixture_path=None, rules_path=None, labels_bytes=None):
             "label_method": "Human-authored reference cases from sample examples, event windows and stable weeks; not a complete ground-truth dataset.",
             "unexplained_confusion_on_reference_set": confusion,
             "all_justified_rows_have_eligible_citations": citations_valid, "checks": checks}
-
-
-def threshold_sensitivity(report):
-    """Nine transparent counterfactual configurations; no new ground-truth labels."""
-    scenarios = []
-    for history in (10, 15, 20):
-        for peer in (15, 20, 25):
-            rule = Thresholds(history, peer, 5)
-            selected = [r for r in report["rows"] if rule.candidate(r["history_change_percent"], r["peer_change_percent"])]
-            justified = sum(bool(r["eligible_note_ids"]) for r in selected)
-            scenarios.append({"history_threshold": history, "peer_threshold": peer, "minimum_rise": 5,
-                              "candidates": len(selected), "justified": justified, "unexplained": len(selected) - justified})
-    return {"purpose": "Sensitivity counts only; no estimate of precision/recall or threshold calibration.",
-            "input_sha256": report["summary"]["input_sha256"], "scenarios": scenarios}

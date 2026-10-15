@@ -7,12 +7,12 @@ import re
 from .io import decode_json
 
 CORE_FILES = {"output.csv", "results.json", "run_summary.json", "token_cost_log.json", "evaluation.json",
-              "reproducibility.json", "environment.json", "threshold_sensitivity.json"}
+              "reproducibility.json", "environment.json"}
 
 
 def source_files(root):
     result = []
-    for folder in ("freight_watch", "web", "scripts", "tests"):
+    for folder in ("freight_watch", "web"):
         result.extend(p for p in (root / folder).rglob("*") if p.is_file() and "__pycache__" not in p.parts
                       and p.suffix in {".py", ".js", ".css", ".html"})
     result.extend(root / name for name in ("start_demo.ps1", "start_demo.cmd"))
